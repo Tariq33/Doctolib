@@ -1,40 +1,19 @@
 package sopra.doctolib.model;
 
-public class Administrateur extends Utilisateur {
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
-	private Long id;
-	private int version;
+
+@Entity
+@DiscriminatorValue("admin")
+public class Administrateur extends Utilisateur {
+	@Column(name = "nom", length = 100)
 	private String nom;
 
 	public Administrateur() {
 		super();
 	}
-	
-	
-
-	public Long getId() {
-		return id;
-	}
-
-
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-
-
-	public int getVersion() {
-		return version;
-	}
-
-
-
-	public void setVersion(int version) {
-		this.version = version;
-	}
-
-
 
 	public String getNom() {
 		return nom;

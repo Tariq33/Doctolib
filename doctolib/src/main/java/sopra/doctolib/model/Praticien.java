@@ -3,19 +3,37 @@ package sopra.doctolib.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+
+@Entity
+@DiscriminatorValue("praticien")
 public class Praticien extends Utilisateur {
 
+	@Column(name = "prenom", length = 255)
 	private String prenom;
+	@Column(name = "nom", length = 255)
 	private String nom;
+	@Column(name = "telephone", length = 255)
 	private String telephone;
+	@Column(name = "numActivite", length = 255, nullable = false)
 	private String numActivite;
+	@Column(name = "specialitePrincipale", length = 255)
 	private String specialitePrincipale;
+	@Column(name = "specialiteSecondaire", length = 255)
 	private String specialiteSecondaire;
-	private Float dureeCreneau;
+	@Column(name = "dureeCreneau", length = 255)
+	private Integer dureeCreneau;
 
+	@OneToMany(mappedBy = "praticien")
 	private List<RendezVous> rdvs = new ArrayList<RendezVous>();
+	@OneToMany(mappedBy = "praticien")
 	private List<MotifDeConsultation> motifs = new ArrayList<MotifDeConsultation>();
+	@OneToMany(mappedBy = "praticien")
 	private List<Lieu> lieux = new ArrayList<Lieu>();
+	@OneToMany(mappedBy = "praticien")
 	private List<Creneau> creneaux = new ArrayList<Creneau>();
 
 	public void addRendezVous(RendezVous rendezVous) {
@@ -86,11 +104,11 @@ public class Praticien extends Utilisateur {
 		this.specialiteSecondaire = specialiteSecondaire;
 	}
 
-	public Float getDureeCreneau() {
+	public Integer getDureeCreneau() {
 		return dureeCreneau;
 	}
 
-	public void setDureeCreneau(Float dureeCreneau) {
+	public void setDureeCreneau(Integer dureeCreneau) {
 		this.dureeCreneau = dureeCreneau;
 	}
 

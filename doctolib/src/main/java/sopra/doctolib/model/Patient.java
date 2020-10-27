@@ -4,16 +4,39 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
+@DiscriminatorValue("patient")
 public class Patient extends Utilisateur {
 
+	@Column(name = "prenom", length = 255)
 	private String prenom;
+	@Column(name = "nom", length = 255)
 	private String nom;
+	@Enumerated(EnumType.STRING)
 	private Sexe sexe;
+	@Column(name = "telephone", length = 255)
 	private String telephone;
+	@Temporal(TemporalType.DATE)
+	@Column(name = "dtNaissance")
 	private Date dtNaissance;
+	@Column(name = "numSS", length = 255, nullable = false)
 	private String numSS;
 
+	@OneToMany(mappedBy = "patient")
 	private List<RendezVous> rdvs = new ArrayList<RendezVous>();
+	@OneToOne
+	@JoinColumn(name = "adresse_id")
 	private Adresse adresse;
 
 	public Patient() {

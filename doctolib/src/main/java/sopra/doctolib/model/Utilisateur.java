@@ -1,11 +1,29 @@
 package sopra.doctolib.model;
 
-public abstract class Utilisateur {
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Version;
 
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "type_of_user", discriminatorType = DiscriminatorType.STRING, length = 25)
+public abstract class Utilisateur {
+	@Id
+	@GeneratedValue
 	private Long id;
+	@Version
 	private int version;
+	@Column(name = "identifiant", length = 255)
 	private String identifiant;
+	@Column(name = "motDePasse", length = 255)
 	private String motDePasse;
+	@Column(name = "email", length = 255)
 	private String email;
 
 	public Utilisateur() {

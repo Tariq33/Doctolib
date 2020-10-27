@@ -1,15 +1,31 @@
 package sopra.doctolib.model;
 
-public class Adresse {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Version;
 
+@Entity
+public class Adresse {
+	@Id
+	@GeneratedValue
 	private Long id;
+	@Version
 	private int version;
+	@Column(name = "numero", length = 255)
 	private String numero;
+	@Column(name = "rue", length = 255)
 	private String rue;
+	@Column(name = "complement", length = 255)
 	private String complement;
+	@Column(length = 10)
 	private String codePostal;
+	@Column(name = "ville", length = 100)
 	private String ville;
 
+	@OneToOne(mappedBy = "adresse")
 	private Patient patient;
 
 	public Adresse() {
