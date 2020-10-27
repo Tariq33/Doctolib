@@ -19,10 +19,10 @@ public class Creneau {
 	private Long id;
 	@Version
 	private int version;
-	@Temporal(TemporalType.DATE)
-	@Column(name = "date", nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "date")
 	private Date date;
-	@Column(name = "disponible", nullable = false)
+	@Column(name = "disponible")
 	private Boolean disponible;
 
 	@ManyToOne

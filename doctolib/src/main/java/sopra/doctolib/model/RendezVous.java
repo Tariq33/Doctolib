@@ -24,7 +24,7 @@ public class RendezVous {
 	private Long id;
 	@Version
 	private int version;
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dtRdv")
 	private Date dtRdv;
 	@Enumerated(EnumType.STRING)

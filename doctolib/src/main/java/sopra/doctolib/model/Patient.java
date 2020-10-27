@@ -1,4 +1,4 @@
-package sopra.doctolib.model;
+	package sopra.doctolib.model;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,7 +30,7 @@ public class Patient extends Utilisateur {
 	@Temporal(TemporalType.DATE)
 	@Column(name = "dtNaissance")
 	private Date dtNaissance;
-	@Column(name = "numSS", length = 255, nullable = false)
+	@Column(name = "numSS", length = 255)
 	private String numSS;
 
 	@OneToMany(mappedBy = "patient")

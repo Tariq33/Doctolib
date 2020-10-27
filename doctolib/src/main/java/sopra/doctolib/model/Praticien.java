@@ -18,7 +18,7 @@ public class Praticien extends Utilisateur {
 	private String nom;
 	@Column(name = "telephone", length = 255)
 	private String telephone;
-	@Column(name = "numActivite", length = 255, nullable = false)
+	@Column(name = "numActivite", length = 255)
 	private String numActivite;
 	@Column(name = "specialitePrincipale", length = 255)
 	private String specialitePrincipale;
