@@ -49,6 +49,21 @@ public class CreneauRestController {
 		}
 	}
 	
+	
+	
+	
+	@GetMapping("/findcreneaubypraticienspecialitemotif/{praticien}/{specialite}/{motif}")
+	@JsonView(Views.ViewCreneau.class)
+	public List<Creneau> FindCreneauByPraticienSpecialiteMotif(@PathVariable String praticien, @PathVariable String specialite, @PathVariable String motif) {
+		
+		List<Creneau> creneau = creneauRepo.FindCreneauByPraticienSpecialiteMotif(praticien,specialite,motif);
+		
+		return creneau;	
+	}
+	
+	
+	
+	
 
 	@PostMapping("")
 	@JsonView(Views.ViewCreneau.class)

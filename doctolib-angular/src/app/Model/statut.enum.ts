@@ -1,0 +1,5 @@
+export enum Statut {
+  PLANIFIE="PLANIFIE",
+  EN_COURS="EN_COURS",
+  EFFECTUE="EFFECTUE"
+}

@@ -11,8 +11,8 @@ import sopra.doctolib.model.Creneau;
 public interface ICreneauRepository extends JpaRepository<Creneau, Long> {
 
 	 
-//	@Query("select c from Creneau c where c.Praticien=:Praticien and c.Specialite=:Specialite and c.Motif=:Motif")
-//	List<Creneau> findCreneauByPraticienSpecialiteMotif(@Param(""));
+	@Query("select c from Creneau c where c.Praticien=:Praticien and c.Specialite=:Specialite and c.Motif=:Motif")
+	List<Creneau> FindCreneauByPraticienSpecialiteMotif(@Param("Praticien") String Praticien, @Param("Specialite") String Specialite, @Param("Motif") String Motif);
 	
 	
 	
