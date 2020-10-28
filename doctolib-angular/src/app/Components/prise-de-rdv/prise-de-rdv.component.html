@@ -1,1 +1,124 @@
-<p>prise-de-rdv works!</p>
+<div class="column ">
+  <div class="row justify-content-center align-items-center mt-4">
+    <div style="width: 72%; color: #3F729B; text-align: center; align: middle;">
+      <h1 class="titretrait">Prise de Rendez-vous</h1>
+
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <!--   PRATICIEN ET/OU SPECIALITE-->
+    <div class="column m-3 " style="width: 350px;">
+      <!--   Titre-->
+      <div class="row justify-content-center">
+        <h5 class="mb-4 mt-2" style="font-size:18px">Praticien et/spécialité</h5>
+      </div>
+      <!--   Praticien-->
+      <div class="row ml-5 mb-3">
+        <label for="praticien" style="font-size:15px">Je choisis par praticien:</label>
+        <select class="form-control" id="praticien" style="width: 250px;">
+          <option>Dr Meyer</option>
+          <option>Dr Gaunelle</option>
+          <option>Dr Gsell</option>
+          <option>Dr Lecat</option>
+        </select>
+      </div>
+      <!--   Spécialité-->
+      <div class="row ml-5 mb-3">
+        <label for="spécialité" style="font-size:15px">Je choisis par spécialité:</label>
+        <select class="form-control" id="spécialité" style="width: 250px;">
+          <option>Généraliste</option>
+          <option>Généraliste</option>
+          <option>Dentiste</option>
+          <option>Pneumopédiatre</option>
+        </select>
+      </div>
+    </div>
+
+    <!--   MOTIF ET LIEU DE CONSULTATION-->
+    <div class="column m-3 " style="width: 350px;">
+      <!--   Titre-->
+      <div class="row justify-content-center">
+        <h5 class="mb-4 mt-2 " style="font-size:18px">Motif et/ou lieu de consultation</h5>
+      </div>
+      <!--   Motif de la consultation-->
+      <div class="row ml-5 mb-3">
+        <label for="motif" style="font-size:15px">Je choisis le motif de la consultation:</label>
+        <select class="form-control" id="motif" style="width: 250px;">
+          <option>Examens suivis nourrissons <2 ans</option>
+          <option>Urgence</option>
+          <option>Bilan annuel</option>
+          <option>Exploration respiratoire</option>
+        </select>
+      </div>
+      <!--   Lieu de la consultation-->
+      <div class="row ml-5 mb-3">
+        <label for="lieu" style="font-size:15px">Je choisis (si besoin) le lieu:</label>
+        <select class="form-control" id="lieu" style="width: 250px;">
+          <option>Cabinet</option>
+          <option>Hôpital</option>
+          <option>Clinique</option>
+          <option>Urgences</option>
+        </select>
+      </div>
+    </div>
+
+    <!--   DATE ET HEURE DE LA CONSULTATION-->
+    <div class="column m-3 " style="width: 350px;">
+      <!--   Titre-->
+      <div class="row justify-content-center">
+        <h5 class="mb-4 mt-2 " style="font-size:18px">Créneaux disponibles</h5>
+      </div>
+      <!--   Date-->
+      <div class="row ml-5 mb-3">
+        <h4 style="font-size:15px">Je choisis la date:</h4>
+        <img src="assets/Images/calendar1.png">
+        <!--        <mdb-calendar id="date" [events]="events" (eventEdited)="onEventEdit($event)" (eventAdded)="onEventAdd($event)"-->
+        <!--                      (eventDeleted)="onEventDelete($event)"></mdb-calendar>-->
+      </div>
+      <!--  Heure-->
+      <div class="row ml-5 mb-3">
+        <label for="heure" style="font-size:15px">Je choisis l'heure:</label>
+        <select class="form-control" id="heure" style="width: 250px;">
+          <option>8h00</option>
+          <option>9h00</option>
+          <option>15h00</option>
+          <option>15h15</option>
+        </select>
+      </div>
+      <!--  Rappels des informations-->
+      <div class="row ml-5">
+        <label for="rappel" style="font-size:15px">Mon rdv:</label>
+        <p>Rdv le XXXX à XX avec Dr X à l'adresse X</p>
+
+      </div>
+    </div>
+
+    <!--   CONFIRMATION DU RENDEZ VOUS-->
+    <div class="column m-3  " style="width: 350px;">
+      <!--   Titre-->
+      <div class="row justify-content-center ">
+        <h5 class="mb-4 mt-2 " style="font-size:18px">Je confirme mon rendez-vous</h5>
+      </div>
+      <!--  Connexion-->
+      <div class="row ml-5 mb-3 form-group" style="width: 250px;">
+        <label style="font-size:15px" for="usr">Identifiant:</label>
+        <input type="text" class="form-control" id="usr">
+      </div>
+      <div class="row ml-5 form-group" style="width: 250px;">
+        <label style="font-size:15px" for="pwd">Password:</label>
+        <input type="password" class="form-control" id="pwd">
+      </div>
+      <!--  Création-->
+      <div class="row ml-5 form-group" style="width: 250px;">
+        <h6 class="mb-2 mt-2 " style="font-size:15px">Pas encore de compte? pas de panique c'est le moment</h6>
+        <button class="btn shadow-none justify-content-center align-items-center border mb-2"
+                style="height: 50px; width: 500px;">
+          <h6 class="mb-4 mt-2 ">+</h6>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+

@@ -1,1 +1,67 @@
 /* You can add global styles to this file, and also import other style files */
+
+@charset "UTF-8";
+
+/* Background */
+body, html {
+  margin: 0;
+  /* Image */
+  background: url(C:\java\workspace\Doctolib\doctolib-angular\src\assets\Images\testbg.jpg);
+  //background: url(/src/assets/images/testbg.jpg);
+
+  /*  Hauteur  */
+  height: 100%;
+
+  /* Centrer */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+#card {
+  width: 68%;
+  height: 85%;
+  align-content: center;
+  background-color: rgb(255, 255, 255, 0.9);
+  border-color: #3F729B;
+}
+
+
+/* Barre de nav */
+#logo {
+  font-size: 18px;
+  font-style: italic;
+  font-family: Cambria;
+  color: #3F729B;
+}
+
+#navbar {
+  width: 100%;
+  font-size: 18px;
+  background-color: #3F729B;
+}
+
+li:hover, li:active {
+  border-bottom-style: solid;
+  border-color: white;
+}
+
+/*Navbar en cours*/
+.enCours{
+  border-bottom-style: solid;
+  border-color: #8bc34a;
+}
+
+.titretrait {
+  align-items: center;
+  display: flex;
+  text-align: center;
+}
+
+.titretrait:before, .titretrait:after {
+  border-top: .0625em solid;
+  content: "";
+  flex: 1;
+  margin: 1em;
+}

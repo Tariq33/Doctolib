@@ -1,3 +1,83 @@
-<h1> Barre de nav  </h1>
-<router-outlet></router-outlet>
-<h1> Bas de page  </h1>
+<body>
+<header>
+  <nav class="navbar fixed-top navbar-expand-lg mb-5 " style="background-color: #3F729B">
+
+    <a class="navbar-brand ml-5" href="#">
+      <h4 id="titre" style="color:white ">DOCTOLIB</h4>
+    </a>
+    <div class="collapse navbar-collapse justify-content-center align-items-center">
+      <ul class="navbar-nav ">
+        <!--        [routerLink]="'pas de /'"-->
+        <li class="nav-item active mx-5"><a class="nav-link" style="color:white " [routerLink]="'accueil'">Accueil<span
+          class="sr-only">(current)</span></a></li>
+        <li class="nav-item active mx-5"><a class="nav-link" style="color:white " [routerLink]="'priseDeRdv'">Prise de
+          Rendez-vous</a></li>
+        <li class="nav-item active mx-5"><a class="nav-link" style="color:white " [routerLink]="'comptePraticien'">Compte</a>
+        </li>
+        <li class="nav-item active mx-5"><a class="nav-link" style="color:white "
+                                            [routerLink]="'connexion'">Connexion</a></li>
+      </ul>
+    </div>
+    <!--    <div id="navbarButtons" class="collapse navbar-collapse">-->
+    <!--      <ul class="navbar-nav ml-auto ">-->
+    <!--                <li class="nav-item active ml-4"[ngClass]="{'enCours' : this.commonService.page=='connexion'||this.commonService.page=='monCompte'}"><a class="nav-link" [routerLink]="'/NPK/connexion'" style="color: #8bc34a;" *ngIf="this.commonService.connecte == null">Connexion <i-->
+    <!--                  class="fas fa-bug"></i></a><a class="nav-link" [routerLink]="'/NPK/compte'" style="color: #8bc34a;" *ngIf="this.commonService.connecte != null">Mon compte <i-->
+    <!--                  class="fas fa-bug"></i></a></li>-->
+    <!--                <li class="nav-item active mr-4 ml-4"><a class="nav-link" [routerLink]="'/NPK/accueil'" *ngIf="this.commonService.connecte!=null && this.commonService.connecte != ''" (click)="deconnexion()">Se déconnecter <i-->
+    <!--                  class="fas fa-power-off"></i></a></li>-->
+    <!--      </ul>-->
+    <!--    </div>-->
+
+  </nav>
+</header>
+<br><br><br>
+
+<div id="container" class="container-fluid border-success justify-content-center align-items-center mt-5 ">
+  <div id="card" class="container-fluid bg mx-auto my-5 py-3 justify-content-center align-items-center"
+       style="background-color: rgba(255,255,255,0.88); width:85%; height: 100%; border:solid; border-width:1px; border-color: #3F729B;">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+
+<footer class="page-footer text-center pt-3" style=" background-color : #3F729B; color:white">
+
+  <div class="container-fluid text-center">
+
+    <div class="row">
+      <div class="col-md-2 mt-md-0 mt-3"></div>
+      <div class="col-md-3 mt-md-0 mt-3">
+        <h4 style="font-size:22px">DOCTOLIB</h4>
+        <p><i class="fas fa-home mr-2"></i>86 avenue JF Kennedy</p>
+        <p>33700 MERIGNAC</p>
+      </div>
+
+      <div class="col-md-2 mb-md-0 mb-3">
+        <h4 style="font-size:22px">Vous avez une question ? </h4>
+        <p><i class="fas fa-phone mr-4"></i>05 35 54 73 70</p>
+        <p><i class="fas fa-envelope mr-4"></i><a class="contact" style="color:white;">contact-doctolib@gmail.com</a>
+        </p>
+      </div>
+
+      <div class="col-md-3 mb-md-0 mb-3">
+        <h4 style="font-size:22px">N'hésitez pas à prendre rendez-vous ! </h4>
+        <p><a><i class="fab fa-linkedin-in mr-2"></i>LinkedIn</a><a class="ml-3"></a> | <a><i
+          class="fab fa-twitter mr-2 ml-3"></i>Twitter</a></p>
+        <p><a><i class="fab fa-instagram mr-2"></i>Instagram</a><a class="ml-3"></a> | <a><i
+          class="fab fa-facebook-f mr-2 ml-3"></i>Facebook</a></p>
+      </div>
+
+      <div class="col-md-2 mt-md-0 mt-3"></div>
+
+    </div>
+  </div>
+
+  <div class="footer-copyright text-center py-3">
+    <p class="mb-3">________________________________________________________________</p>
+    <h5 style="font-size:16px">© 2020 Copyright: DOCTOLIB.com, votre application de prise de rendez-vous | Tous droits
+      réservés | <a>Mentions légales</a></h5>
+  </div>
+
+</footer>
+
+</body>
