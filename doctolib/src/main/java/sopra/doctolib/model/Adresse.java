@@ -18,27 +18,21 @@ public class Adresse {
 	@Version
 	@JsonView(Views.ViewCommon.class)
 	private int version;
-	@JsonView(Views.ViewCommon.class)
 	@Column(name = "numero", length = 255)
 	@JsonView(Views.ViewCommon.class)
 	private String numero;
-	@JsonView(Views.ViewCommon.class)
 	@Column(name = "rue", length = 255)
 	@JsonView(Views.ViewCommon.class)
 	private String rue;
-	@JsonView(Views.ViewCommon.class)
 	@Column(name = "complement", length = 255)
 	@JsonView(Views.ViewCommon.class)
 	private String complement;
-	@JsonView(Views.ViewCommon.class)
 	@Column(length = 10)
 	@JsonView(Views.ViewCommon.class)
 	private String codePostal;
-	@JsonView(Views.ViewCommon.class)
 	@Column(name = "ville", length = 100)
 	@JsonView(Views.ViewCommon.class)
 	private String ville;
-	@JsonView(Views.ViewPatient.class)
 	@OneToOne(mappedBy = "adresse")
 	@JsonView(Views.ViewAdresse.class)
 	private Patient patient;
