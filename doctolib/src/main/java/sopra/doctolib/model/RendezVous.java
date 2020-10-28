@@ -17,6 +17,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
@@ -31,6 +32,7 @@ public class RendezVous {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dtRdv")
 	@JsonView(Views.ViewCommon.class)
+	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
 	private Date dtRdv;
 	@Enumerated(EnumType.STRING)
 	@JsonView(Views.ViewCommon.class)
