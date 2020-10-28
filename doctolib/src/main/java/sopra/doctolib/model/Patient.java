@@ -1,4 +1,4 @@
-	package sopra.doctolib.model;
+package sopra.doctolib.model;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,28 +15,38 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @DiscriminatorValue("patient")
 public class Patient extends Utilisateur {
 
 	@Column(name = "prenom", length = 255)
+	@JsonView(Views.ViewCommon.class)
 	private String prenom;
 	@Column(name = "nom", length = 255)
+	@JsonView(Views.ViewCommon.class)
 	private String nom;
 	@Enumerated(EnumType.STRING)
+	@JsonView(Views.ViewCommon.class)
 	private Sexe sexe;
 	@Column(name = "telephone", length = 255)
+	@JsonView(Views.ViewCommon.class)
 	private String telephone;
 	@Temporal(TemporalType.DATE)
 	@Column(name = "dtNaissance")
+	@JsonView(Views.ViewCommon.class)
 	private Date dtNaissance;
 	@Column(name = "numSS", length = 255)
+	@JsonView(Views.ViewCommon.class)
 	private String numSS;
 
 	@OneToMany(mappedBy = "patient")
+	@JsonView(Views.ViewPatient.class)
 	private List<RendezVous> rdvs = new ArrayList<RendezVous>();
 	@OneToOne
 	@JoinColumn(name = "adresse_id")
+	@JsonView(Views.ViewPatient.class)
 	private Adresse adresse;
 
 	public Patient() {

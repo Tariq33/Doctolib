@@ -87,11 +87,11 @@ class DoctolibApplicationTests {
 		Date dateCreneau = new Date();
 		SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
 		dateCreneau = sdf2.parse("23/11/2020 16:00:00");
-		
+
 		RendezVous rdv = new RendezVous();
 		rdv.setDtRdv(dateCreneau);
 		rdvRepo.save(rdv);
-		
+
 		Creneau creneau = new Creneau();
 		creneau.setDisponible(true);
 
