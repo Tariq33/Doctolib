@@ -4,9 +4,9 @@ public class Views {
 	
 	public static class ViewCommon {}
 	
-	public static class Creneau extends ViewCommon {}
+	public static class ViewCreneau extends ViewCommon {}
 	
-	public static class Lieu extends ViewCommon {}
+	public static class ViewLieu extends ViewCommon {}
 	
 	public static class ViewMotifDeConsultation extends ViewCommon {}
 	
