@@ -7,24 +7,32 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 public class Adresse {
 	@Id
 	@GeneratedValue
+	@JsonView(Views.ViewCommon.class)
 	private Long id;
 	@Version
 	private int version;
+	@JsonView(Views.ViewCommon.class)
 	@Column(name = "numero", length = 255)
 	private String numero;
+	@JsonView(Views.ViewCommon.class)
 	@Column(name = "rue", length = 255)
 	private String rue;
+	@JsonView(Views.ViewCommon.class)
 	@Column(name = "complement", length = 255)
 	private String complement;
+	@JsonView(Views.ViewCommon.class)
 	@Column(length = 10)
 	private String codePostal;
+	@JsonView(Views.ViewCommon.class)
 	@Column(name = "ville", length = 100)
 	private String ville;
-
+	@JsonView(Views.ViewPatient.class)
 	@OneToOne(mappedBy = "adresse")
 	private Patient patient;
 

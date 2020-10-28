@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import sopra.doctolib.model.Administrateur;
 import sopra.doctolib.model.Adresse;
 import sopra.doctolib.model.Creneau;
 import sopra.doctolib.model.Lieu;
@@ -112,6 +113,9 @@ class DoctolibApplicationTests {
 		rdv.setPatient(patient);
 		rdvRepo.save(rdv);
 
+		Administrateur admin = new Administrateur();
+		admin.setNom("WW");
+		adminRepo.save(admin);
 	}
 
 }

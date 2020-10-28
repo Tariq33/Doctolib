@@ -12,27 +12,32 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 public class Creneau {
 	@Id
 	@GeneratedValue
+	@JsonView(Views.ViewCommon.class)
 	private Long id;
 	@Version
 	private int version;
+	@JsonView(Views.ViewCommon.class)
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "date")
 	private Date date;
+	@JsonView(Views.ViewCommon.class)
 	@Column(name = "disponible")
 	private Boolean disponible;
-
+	@JsonView(Views.ViewLieu.class)
 	@ManyToOne
 	@JoinColumn(name = "lieu_id")
 	private Lieu lieu;
-	
+	@JsonView(Views.ViewPraticien.class)
 	@ManyToOne
 	@JoinColumn(name = "praticien_id")
 	private Praticien praticien;
-	
+	@JsonView(Views.ViewRendezVous.class)
 	@ManyToOne
 	@JoinColumn(name = "rdv_id")
 	private RendezVous rendezVous;
