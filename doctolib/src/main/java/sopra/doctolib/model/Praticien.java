@@ -8,31 +8,44 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @DiscriminatorValue("praticien")
 public class Praticien extends Utilisateur {
 
+	@JsonView(Views.ViewCommon.class)
 	@Column(name = "prenom", length = 255)
 	private String prenom;
+	@JsonView(Views.ViewCommon.class)
 	@Column(name = "nom", length = 255)
 	private String nom;
+	@JsonView(Views.ViewCommon.class)
 	@Column(name = "telephone", length = 255)
 	private String telephone;
+	@JsonView(Views.ViewCommon.class)
 	@Column(name = "numActivite", length = 255)
 	private String numActivite;
+	@JsonView(Views.ViewCommon.class)
 	@Column(name = "specialitePrincipale", length = 255)
 	private String specialitePrincipale;
+	@JsonView(Views.ViewCommon.class)
 	@Column(name = "specialiteSecondaire", length = 255)
 	private String specialiteSecondaire;
+	@JsonView(Views.ViewCommon.class)
 	@Column(name = "dureeCreneau", length = 255)
 	private Integer dureeCreneau;
 
+	@JsonView(Views.ViewPraticien.class)
 	@OneToMany(mappedBy = "praticien")
 	private List<RendezVous> rdvs = new ArrayList<RendezVous>();
+	@JsonView(Views.ViewPraticien.class)
 	@OneToMany(mappedBy = "praticien")
 	private List<MotifDeConsultation> motifs = new ArrayList<MotifDeConsultation>();
+	@JsonView(Views.ViewPraticien.class)
 	@OneToMany(mappedBy = "praticien")
 	private List<Lieu> lieux = new ArrayList<Lieu>();
+	@JsonView(Views.ViewPraticien.class)
 	@OneToMany(mappedBy = "praticien")
 	private List<Creneau> creneaux = new ArrayList<Creneau>();
 

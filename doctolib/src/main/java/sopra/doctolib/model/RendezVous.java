@@ -17,29 +17,39 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 public class RendezVous {
 	@Id
 	@GeneratedValue
+	@JsonView(Views.ViewCommon.class)
 	private Long id;
 	@Version
+	@JsonView(Views.ViewCommon.class)
 	private int version;
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dtRdv")
+	@JsonView(Views.ViewCommon.class)
 	private Date dtRdv;
 	@Enumerated(EnumType.STRING)
+	@JsonView(Views.ViewCommon.class)
 	private Statut statut;
 
 	@ManyToOne
 	@JoinColumn(name = "patient")
+	@JsonView(Views.ViewRendezVous.class)
 	private Patient patient;
 	@ManyToOne
 	@JoinColumn(name = "praticien")
+	@JsonView(Views.ViewRendezVous.class)
 	private Praticien praticien;
 	@ManyToOne
 	@JoinColumn(name = "motif")
+	@JsonView(Views.ViewRendezVous.class)
 	private MotifDeConsultation motif;
 	@OneToMany(mappedBy = "rendezVous")
+	@JsonView(Views.ViewRendezVous.class)
 	private List<Creneau> creneaux = new ArrayList<Creneau>();
 
 	public RendezVous() {
