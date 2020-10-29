@@ -11,6 +11,7 @@
     position: center;
     margin-bottom: 17px;
   }
+
   //&__input-wrapper {
   //  width: 212px;
   //  position: relative;
@@ -38,18 +39,21 @@
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
   }
+
   &__nav-btn {
     background-color: transparent;
     border: none;
     cursor: pointer;
     outline: none;
     color: #fff;
-    &[disabled]{
+
+    &[disabled] {
       color: transparent;
       pointer-events: none;
       cursor: not-allowed;
     }
   }
+
   &__month-nav {
     display: flex;
     flex-direction: row;
@@ -59,10 +63,12 @@
     color: #fff;
     font-family: Raleway, sans-serif;
     font-size: 14px;
+
     span {
       line-height: 1;
     }
   }
+
   &__year-nav {
     height: 100%;
     font-size: 10px;
@@ -73,6 +79,7 @@
     color: #fff;
     font-family: OpenSans, sans-serif;
   }
+
   &__day-names {
     font-size: 12px;
     display: flex;
@@ -81,21 +88,25 @@
     border-top: 1px solid #fff;
     padding: 0 5px;
   }
+
   &__day-name {
     color: #fff;
     font-family: OpenSans, sans-serif;
     font-size: 11px;
   }
+
   &__weeks {
     display: flex;
     flex-direction: column;
     padding: 5px;
     background-color: #fff;
   }
+
   &__week {
     display: flex;
     flex-direction: row;
   }
+
   &__date, &__day-name {
     text-align: center;
     padding: 3px;
@@ -104,9 +115,11 @@
     justify-content: center;
     align-items: center;
   }
+
   &__date {
     height: 30px;
     position: relative;
+
     &:after {
       content: '';
       height: 30px * 0.9;
@@ -119,35 +132,43 @@
       transition: all 1s;
       z-index: 1;
     }
+
     &:hover {
       cursor: pointer;
       color: #fff;
+
       &:after {
         background-color: #3F729B;
         box-shadow: 1px 2px 3px 2px rgba(0, 0, 0, 0.08);
         opacity: .6;
       }
     }
+
     &.disabled {
       pointer-events: none;
       color: #e0e0e0;
     }
+
     &.selected {
       color: #fff;
+
       &:after {
         background-color: #3F729B;
         box-shadow: 1px 3px 8px 2px rgba(0, 0, 0, 0.18);
       }
+
       &:hover {
         &:after {
           opacity: 1;
         }
       }
     }
+
     &.today {
       font-weight: bold;
     }
   }
+
   &__number {
     z-index: 10;
     font-size: 12px;
@@ -162,4 +183,19 @@
   position: absolute;
   top: 8px;
   right: 10px;
+}
+
+//NAV BARRE
+.navbarvert{
+  text-decoration-line: none;
+  font-weight: bolder;
+  font-size: large;
+  color: #3F729B;
+}
+
+.navbarvert:hover, .navbarvert:active, .navbarvert:any-link{
+  text-decoration-line: none;
+  font-weight: bolder;
+  font-size: large;
+  color: #3F729B;
 }

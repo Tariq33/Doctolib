@@ -92,4 +92,8 @@ export class ComptePatientComponent implements OnInit {
     this.generateCalendar();
 
   }
+
+
+
+
 }

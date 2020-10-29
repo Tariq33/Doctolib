@@ -1,194 +1,240 @@
-<div class="column ">
-  <div class="row justify-content-center align-items-center mt-4">
-    <div style="width: 72%; color: #3F729B; text-align: center; align: middle;">
-      <h1 class="titretrait">Mon compte patient - mes rdv</h1>
-
-    </div>
+<!--NAV BAR VERTICALE-->
+<div class="row">
+  <div class="column justify-content-center ml-5">
+    <ul id="navbarvert" class="nav nav-pills btn-group-vertical">
+      <li class="active my-5"><a data-toggle="pill" href="#rdv">Mes rdv</a></li>
+      <li class="my-5"><a data-toggle="pill" href="#infos">Mes infos</a></li>
+    </ul>
   </div>
+  <!--###########################################################################################################-->
 
-  <div class="row justify-content-center">
-    <!--   MES DERNIERS RDVS-->
-    <div class="column m-3 " style="width: 500px">
-      <!--   Liste des rdvs-->
-      <div class="row  mb-3">
-        <div class="card border-0 ml-5 mr-5 mb-5 bg-transparent align-items-center justify-content-center">
-          <div class="row border mt-3 m-5 bg-transparent align-items-center justify-content-center">
-            <!--Header-->
-            <h2 class="my-3" style="text-align: center">
-              <p>Mes rendez-vous</p></h2>
-            <!--Body-->
-            <div class="card-body " style="width: 100%">
-              <table class="table table-striped table-responsive">
-                <thead>
-                <tr>
-                  <th>Id</th>
-                  <th>Date</th>
-                  <th>Heure</th>
-                  <th>Spécialité</th>
-                  <th>Praticien</th>
-                  <th>Motif</th>
-                  <th>Statut</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <!--                  <td>{{}}</td>-->
-                  <!--                  <td>{{}}</td>-->
-                  <!--                  <td>{{}}</td>-->
-                  <!--                  <td>{{}}</td>-->
-                  <!--                  <td>{{}}</td>-->
-                  <!--                  <td>{{}}</td>-->
-                  <!--                  <td>{{}}</td>-->
-                </tr>
-                </tbody>
-              </table>
-            </div>
-            <!--Footer-->
-            <div class="border card-footer align-items-center justify-content-center" style="width: 100%">
-              <!--Bouton ADD-->
-              <a class="btn btn-lg float-right"
-                 style="background-color :#3F729B; color: black;"
-                 data-toggle="modal"
-                 data-target="#"><i class="fas fa-plus"></i></a>
+  <div class="column  justify-content-center mx-auto">
+    <div class="tab-content">
+      <div id="rdv" class="tab-pane active">
+        <div class="column ">
+          <div class="row justify-content-center align-items-center mt-4">
+            <div style="width: 72%; color: #3F729B; text-align: center; align: middle;">
+              <h1 class="titretrait">Mes rdv</h1>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
 
-    <!--   PRENDRE UN RDV-->
-    <div class="column m-3 border " style="width: 600px;">
+          <!--###########################################################################################################-->
 
-      <div class="row ml-3 justify-content-center ">
-        <!--Praticien + spécialité-->
-        <!--   Praticien-->
-        <div class="column m-3 " style="width: 250px;">
-          <div class="row  ">
-            <label for="praticien" style="font-size:15px">Je choisis par praticien:</label>
-            <select class="form-control" id="praticien" style="width: 250px;">
-              <option>Dr Meyer</option>
-              <option>Dr Gaunelle</option>
-              <option>Dr Gsell</option>
-              <option>Dr Lecat</option>
-            </select>
-          </div>
-        </div>
-        <!--   Spécialité-->
-        <div class="column m-3 " style="width: 200px;">
-          <div class="row  ">
-            <label for="spécialité" style="font-size:15px">Je choisis par spécialité:</label>
-            <select class="form-control" id="spécialité" style="width: 200px;">
-              <option>Généraliste</option>
-              <option>Généraliste</option>
-              <option>Dentiste</option>
-              <option>Pneumopédiatre</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <div class="row ml-3 justify-content-center">
-        <!--Motif + lieu-->
-        <!--   Motif de la consultation-->
-        <div class="column m-3 " style="width: 250px;">
-          <div class="row  ">
-            <label for="motif" style="font-size:15px">Je choisis le motif de la consultation:</label>
-            <select class="form-control" id="motif" style="width: 250px;">
-              <option>Examens suivis nourrissons <2 ans</option>
-              <option>Urgence</option>
-              <option>Bilan annuel</option>
-              <option>Exploration respiratoire</option>
-            </select>
-          </div>
-        </div>
-        <!--   Lieu de la consultation-->
-        <div class="column m-3 " style="width: 200px;">
-          <div class="row  ">
-            <label for="lieu" style="font-size:15px">Je choisis (si besoin) le lieu:</label>
-            <select class="form-control" id="lieu" style="width: 200px;">
-              <option>Cabinet</option>
-              <option>Hôpital</option>
-              <option>Clinique</option>
-              <option>Urgences</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <div class="row ml-5 ">
-        <!--Date-->
-        <!--Date + calendar-->
-        <div class="column ml-3 mt-3 " style="width: 550px;">
-          <div class="row mb-3 ">
-            <h4 style="font-size:15px">Je choisis la date:</h4>
-
-            <!--CALENDRIER-->
-            <div class="calendar__wrapper justify-content-center align-middle mr-5" style="width: 500px; height:200px">
-              <div class="calendar__navs">
-                <div class="calendar__month-nav">
-                  <button class="calendar__nav-btn" (click)="prevMonth()">&lt;</button>
-                  <span>
-          {{currentDate.format('MMMM').toUpperCase()}}
-                    {{currentDate.format('YYYY')}}
-           </span>
-                  <button class="calendar__nav-btn"
-                          (click)="nextMonth()"
-                  >>
-                  </button>
-                </div>
-              </div>
-              <div class="calendar__month">
-                <div class="calendar__day-names">
-                  <div class="calendar__day-name"
-                       *ngFor="let name of namesOfDays">{{name}}</div>
-                </div>
-                <div class="calendar__weeks">
-                  <div class="calendar__week" *ngFor="let week of weeks">
-                    <ng-container *ngFor="let day of week">
-                      <div class="calendar__date"
-                           [ngClass]="{'today': day.today,
-                              'selected': day.selected
-                              }"
-                           (click)="selectDate(day)">
-                        <span class="calendar__number">{{day.mDate.date()}}</span>
-                      </div>
-                    </ng-container>
+          <!--ONGLET 1 : mes rendez-vous-->
+          <div class="row justify-content-center mx-auto">
+            <!--   MES DERNIERS RDVS-->
+            <div class="column m-3 " style="width: 500px">
+              <!--   Liste des rdvs-->
+              <div class="row  mb-3">
+                <div class="card border-0 ml-5 mr-5 mb-5 bg-transparent align-items-center justify-content-center">
+                  <div class="row border mt-3 m-5 bg-transparent align-items-center justify-content-center">
+                    <!--Header-->
+                    <h2 class="my-3" style="text-align: center">
+                      <p>Mes rendez-vous</p></h2>
+                    <!--Body-->
+                    <div class="card-body " style="width: 100%">
+                      <table class="table table-striped table-responsive">
+                        <thead>
+                        <tr>
+                          <th>Id</th>
+                          <th>Date</th>
+                          <th>Heure</th>
+                          <th>Spécialité</th>
+                          <th>Praticien</th>
+                          <th>Motif</th>
+                          <th>Statut</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                          <!--                  <td>{{}}</td>-->
+                          <!--                  <td>{{}}</td>-->
+                          <!--                  <td>{{}}</td>-->
+                          <!--                  <td>{{}}</td>-->
+                          <!--                  <td>{{}}</td>-->
+                          <!--                  <td>{{}}</td>-->
+                          <!--                  <td>{{}}</td>-->
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <!--Footer-->
+                    <div class="border card-footer align-items-center justify-content-center" style="width: 100%">
+                      <!--Bouton ADD-->
+                      <a class="btn btn-lg float-right"
+                         style="background-color :#3F729B; color: black;"
+                         data-toggle="modal"
+                         data-target="#"><i class="fas fa-plus"></i></a>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <!--CALENDRIER-->
+
+            <!--   PRENDRE UN RDV-->
+            <div class="column m-3 border " style="width: 600px;">
+
+              <div class="row ml-3 justify-content-center ">
+                <!--Praticien + spécialité-->
+                <!--   Praticien-->
+                <div class="column m-3 " style="width: 250px;">
+                  <div class="row  ">
+                    <label for="praticien" style="font-size:15px">Je choisis par praticien:</label>
+                    <select class="form-control" id="praticien" style="width: 250px;">
+                      <option>Dr Meyer</option>
+                      <option>Dr Gaunelle</option>
+                      <option>Dr Gsell</option>
+                      <option>Dr Lecat</option>
+                    </select>
+                  </div>
+                </div>
+                <!--   Spécialité-->
+                <div class="column m-3 " style="width: 200px;">
+                  <div class="row  ">
+                    <label for="spécialité" style="font-size:15px">Je choisis par spécialité:</label>
+                    <select class="form-control" id="spécialité" style="width: 200px;">
+                      <option>Généraliste</option>
+                      <option>Généraliste</option>
+                      <option>Dentiste</option>
+                      <option>Pneumopédiatre</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row ml-3 justify-content-center">
+                <!--Motif + lieu-->
+                <!--   Motif de la consultation-->
+                <div class="column m-3 " style="width: 250px;">
+                  <div class="row  ">
+                    <label for="motif" style="font-size:15px">Je choisis le motif de la consultation:</label>
+                    <select class="form-control" id="motif" style="width: 250px;">
+                      <option>Examens suivis nourrissons <2 ans</option>
+                      <option>Urgence</option>
+                      <option>Bilan annuel</option>
+                      <option>Exploration respiratoire</option>
+                    </select>
+                  </div>
+                </div>
+                <!--   Lieu de la consultation-->
+                <div class="column m-3 " style="width: 200px;">
+                  <div class="row  ">
+                    <label for="lieu" style="font-size:15px">Je choisis (si besoin) le lieu:</label>
+                    <select class="form-control" id="lieu" style="width: 200px;">
+                      <option>Cabinet</option>
+                      <option>Hôpital</option>
+                      <option>Clinique</option>
+                      <option>Urgences</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row ml-5 ">
+                <!--Date-->
+                <!--Date + calendar-->
+                <div class="column ml-3 mt-3 " style="width: 550px;">
+                  <div class="row mb-3 ">
+                    <h4 style="font-size:15px">Je choisis la date:</h4>
+
+                    <!--CALENDRIER-->
+                    <div class="calendar__wrapper justify-content-center align-middle mr-5"
+                         style="width: 500px; height:200px">
+                      <div class="calendar__navs">
+                        <div class="calendar__month-nav">
+                          <button class="calendar__nav-btn" (click)="prevMonth()">&lt;</button>
+                          <span>
+          {{currentDate.format('MMMM').toUpperCase()}}
+                            {{currentDate.format('YYYY')}}
+           </span>
+                          <button class="calendar__nav-btn"
+                                  (click)="nextMonth()"
+                          >>
+                          </button>
+                        </div>
+                      </div>
+                      <div class="calendar__month">
+                        <div class="calendar__day-names">
+                          <div class="calendar__day-name"
+                               *ngFor="let name of namesOfDays">{{name}}</div>
+                        </div>
+                        <div class="calendar__weeks">
+                          <div class="calendar__week" *ngFor="let week of weeks">
+                            <ng-container *ngFor="let day of week">
+                              <div class="calendar__date"
+                                   [ngClass]="{'today': day.today,
+                              'selected': day.selected
+                              }"
+                                   (click)="selectDate(day)">
+                                <span class="calendar__number">{{day.mDate.date()}}</span>
+                              </div>
+                            </ng-container>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!--CALENDRIER-->
+
+                  </div>
+
+
+                </div>
+              </div>
+
+              <div class="row ml-3 justify-content-center">
+                <!--Heure + rappel-->
+                <!--  Heure-->
+                <div class="column m-3 " style="width: 250px;">
+                  <div class="row  ">
+                    <label for="heure" style="font-size:15px">Je choisis l'heure:</label>
+                    <select class="form-control" id="heure" style="width: 250px;">
+                      <option>8h00</option>
+                      <option>9h00</option>
+                      <option>15h00</option>
+                      <option>15h15</option>
+                    </select>
+                  </div>
+                </div>
+                <!--  Rappels des informations-->
+                <div class="column m-3  " style="width: 200px;">
+                  <div class="row card pl-2">
+                    <label for="rappel" style="font-size:15px;">Mon rdv:</label>
+                    <p style="font-size:15px; font-style: italic">Rdv le XXXX à XX avec Dr X à l'adresse X</p>
+                  </div>
+                </div>
+              </div>
+            </div>
 
           </div>
-
-
         </div>
       </div>
 
-      <div class="row ml-3 justify-content-center">
-        <!--Heure + rappel-->
-        <!--  Heure-->
-        <div class="column m-3 " style="width: 250px;">
-          <div class="row  ">
-            <label for="heure" style="font-size:15px">Je choisis l'heure:</label>
-            <select class="form-control" id="heure" style="width: 250px;">
-              <option>8h00</option>
-              <option>9h00</option>
-              <option>15h00</option>
-              <option>15h15</option>
-            </select>
+      <!--###########################################################################################################-->
+
+      <!--ONGLET 2 : mes informations personnelles-->
+      <div id="infos" class="tab-pane fade">
+        <div class="column ">
+          <div class="row justify-content-center align-items-center mt-4">
+            <div style="width: 72%; color: #3F729B; text-align: center; align: middle;">
+              <h1 class="titretrait">Mes infos </h1>
+
+            </div>
           </div>
-        </div>
-        <!--  Rappels des informations-->
-        <div class="column m-3  " style="width: 200px;">
-          <div class="row card pl-2">
-            <label for="rappel" style="font-size:15px;">Mon rdv:</label>
-            <p style="font-size:15px; font-style: italic">Rdv le XXXX à XX avec Dr X à l'adresse X</p>
+
+          <div class="row justify-content-center">
+            <!--   MES INFOS-->
+            <div class="column m-3 " style="width: 500px">
+              <!--   Coordonnées-->
+
+              formulaire avec input
+
+            </div>
           </div>
         </div>
       </div>
     </div>
-
   </div>
 </div>
+
+
 
