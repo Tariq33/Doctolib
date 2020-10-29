@@ -18,6 +18,13 @@ export class UtilisateurService {
     return this.utilisateurs;
   }
 
+  findByIdentifiantAndMotDePasse(identifiant: string, motDePasse: string): Observable<Utilisateur> {
+    let login = {
+      "identifiant":identifiant,
+      "motDePasse":motDePasse};
+    return this.http.post<Utilisateur>("http://localhost:8080/utilisateur/connexion",login);
+  }
+
   findById(id: number): Observable<Utilisateur> {
     return this.http.get<Utilisateur>('http://localhost:8080/utilisateur/' + id);
   }

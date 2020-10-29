@@ -56,19 +56,56 @@
     <!--   DATE ET HEURE DE LA CONSULTATION-->
     <div class="column m-3 " style="width: 350px;">
       <!--   Titre-->
-      <div class="row justify-content-center">
+      <div class="row justify-content-center ">
         <h5 class="mb-4 mt-2 " style="font-size:18px">Créneaux disponibles</h5>
       </div>
       <!--   Date-->
-      <div class="row ml-5 mb-3">
+      <div class="row ml-5 mb-3 ">
         <h4 style="font-size:15px">Je choisis la date:</h4>
-        <img src="assets/Images/calendar1.png">
-        <!--        <mdb-calendar id="date" [events]="events" (eventEdited)="onEventEdit($event)" (eventAdded)="onEventAdd($event)"-->
-        <!--                      (eventDeleted)="onEventDelete($event)"></mdb-calendar>-->
+        <!--        <img src="assets/Images/calendar1.png">-->
+        <!--CALENDRIER-->
+        <div class="calendar__wrapper justify-content-center align-middle mr-5">
+          <div class="calendar__navs">
+            <div class="calendar__month-nav">
+              <button class="calendar__nav-btn" (click)="prevMonth()">&lt;</button>
+              <span>
+          {{currentDate.format('MMMM').toUpperCase()}}
+                {{currentDate.format('YYYY')}}
+           </span>
+              <button class="calendar__nav-btn"
+
+                      (click)="nextMonth()"
+              >>
+              </button>
+            </div>
+          </div>
+          <div class="calendar__month">
+            <div class="calendar__day-names">
+              <div class="calendar__day-name"
+                   *ngFor="let name of namesOfDays">{{name}}</div>
+            </div>
+            <div class="calendar__weeks">
+              <div class="calendar__week" *ngFor="let week of weeks">
+                <ng-container *ngFor="let day of week">
+                  <div class="calendar__date"
+                       [ngClass]="{'today': day.today,
+                              'selected': day.selected
+                              }"
+                       (click)="selectDate(day)">
+                    <span class="calendar__number">{{day.mDate.date()}}</span>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--CALENDRIER-->
+
       </div>
+
       <!--  Heure-->
       <div class="row ml-5 mb-3">
-        <label for="heure" style="font-size:10px">Je choisis l'heure:</label>
+        <label for="heure" style="font-size:15px">Je choisis l'heure:</label>
         <select class="form-control" id="heure" style="width: 250px;">
           <option>8h00</option>
           <option>9h00</option>
