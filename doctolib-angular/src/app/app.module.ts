@@ -9,6 +9,7 @@ import { ConnexionComponent } from './Components/connexion/connexion.component';
 import { ComptePraticienComponent } from './Components/compte-praticien/compte-praticien.component';
 import { ComptePatientComponent } from './Components/compte-patient/compte-patient.component';
 import { CompteAdminComponent } from './Components/compte-admin/compte-admin.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CompteAdminComponent } from './Components/compte-admin/compte-admin.com
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

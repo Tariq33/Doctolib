@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {PraticienService} from '../../Service/praticien.service';
+import {Praticien} from '../../Model/praticien';
 
 @Component({
   selector: 'app-prise-de-rdv',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PriseDeRdvComponent implements OnInit {
 
-  constructor() { }
+  praticiens: Array<Praticien> = new Array<Praticien>();
+
+  constructor(private praticienService: PraticienService) {
+    this.praticienService = praticienService;
+    this.load();
+    console.log(this.praticiens);
+  }
 
   ngOnInit(): void {
   }
+
+
+  load() {
+    this.praticienService.load();
+    this.praticiens = this.praticienService.findAll();
+  }
+
 
 }

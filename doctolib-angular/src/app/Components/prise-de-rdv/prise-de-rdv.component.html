@@ -16,12 +16,10 @@
       <!--   Praticien-->
       <div class="row ml-5 mb-3">
         <label for="praticien" style="font-size:15px">Je choisis par praticien:</label>
-        <select class="form-control" id="praticien" style="width: 250px;">
-          <option>Dr Meyer</option>
-          <option>Dr Gaunelle</option>
-          <option>Dr Gsell</option>
-          <option>Dr Lecat</option>
+        <select  class="form-control" id="praticien" style="width: 250px;">
+          <option *ngFor="let praticien of praticiens">{{praticien.prenom}}</option>
         </select>
+
       </div>
       <!--   Spécialité-->
       <div class="row ml-5 mb-3">
