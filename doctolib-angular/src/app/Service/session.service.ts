@@ -40,7 +40,7 @@ export class SessionService {
   offUtilisateur(){
     sessionStorage.clear();
     window.location.reload();
-    location.replace('/accueil');
+    location.replace('accueil');
   }
 
 }
