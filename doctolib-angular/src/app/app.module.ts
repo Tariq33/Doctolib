@@ -10,7 +10,7 @@ import {ComptePraticienComponent} from './Components/compte-praticien/compte-pra
 import {ComptePatientComponent} from './Components/compte-patient/compte-patient.component';
 import {CompteAdminComponent} from './Components/compte-admin/compte-admin.component';
 import {HttpClientModule} from '@angular/common/http';
-import { CalendarComponent } from './Components/calendar/calendar.component';
+import {CalendarComponent } from './Components/calendar/calendar.component';
 import {FormsModule} from '@angular/forms';
 import {AccesDeniedComponent} from './Components/acces-denied/acces-denied.component';
 
