@@ -20,7 +20,9 @@ export interface CalendarDate {
 })
 export class PriseDeRdvComponent implements OnInit {
 
-  praticiens: Array<Praticien> = new Array<Praticien>();
+  nom: string;
+  rdvFormNomPraticien: Praticien = new Praticien();
+  specialite: Praticien = new Praticien();
 
   public currentDate: moment.Moment;
   public namesOfDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -35,17 +37,32 @@ export class PriseDeRdvComponent implements OnInit {
     this.lieuService = lieuService;
   }
 
+  listPraticien() {
+    return this.praticienService.findAll();
+  }
+
+  listLieu() {
+    return this.lieuService.findAll();
+  }
+
+  listMotif() {
+    return this.motifService.findAll();
+  }
+
+  listSpecialite(nomPraticien: string) {
+    this.praticienService.findByNom(nomPraticien).subscribe(resp => {
+      this.specialite = resp[0];
+      console.log(this.specialite);
+    }, error => console.log('erreur'));
+  }
+
   ngOnInit(): void {
     this.currentDate = moment();
     this.selectedDate = moment(this.currentDate).format('DD/MM/YYYY');
     this.generateCalendar();
   }
 
-
-  listPraticien() {
-    return this.praticienService.findAll();
-  }
-
+  // CALENDAR
   private generateCalendar(): void {
     const dates = this.fillDates(this.currentDate);
     const weeks = [];
@@ -53,9 +70,6 @@ export class PriseDeRdvComponent implements OnInit {
       weeks.push(dates.splice(0, 7));
     }
     this.weeks = weeks;
-  }
-  listMotif() {
-    return this.motifService.findAll();
   }
 
   private fillDates(currentMoment: moment.Moment) {
@@ -120,11 +134,6 @@ export class PriseDeRdvComponent implements OnInit {
   //   const lastSat = moment().weekday(-1);
   //   return moment(date).isSameOrBefore(lastSat);
   // }
-
-
-  listLieu() {
-    return this.lieuService.findAll();
-  }
 
 
 }
