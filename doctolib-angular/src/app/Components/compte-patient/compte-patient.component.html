@@ -10,7 +10,7 @@
     <!--   MES DERNIERS RDVS-->
     <div class="column m-3 " style="width: 500px">
       <!--   Liste des rdvs-->
-      <div class="row ml-5 mb-3">
+      <div class="row  mb-3">
         <div class="card border-0 ml-5 mr-5 mb-5 bg-transparent align-items-center justify-content-center">
           <div class="row border mt-3 m-5 bg-transparent align-items-center justify-content-center">
             <!--Header-->
@@ -57,15 +57,15 @@
     </div>
 
     <!--   PRENDRE UN RDV-->
-    <div class="column m-3 " style="width: 500px;">
+    <div class="column m-3 border " style="width: 600px;">
 
-      <div class="row ml-5 ">
+      <div class="row ml-3 justify-content-center ">
         <!--Praticien + spécialité-->
         <!--   Praticien-->
-        <div class="column m-3 " style="width: 200px;">
-          <div class="row ml-5 ">
+        <div class="column m-3 " style="width: 250px;">
+          <div class="row  ">
             <label for="praticien" style="font-size:15px">Je choisis par praticien:</label>
-            <select class="form-control" id="praticien" style="width: 200px;">
+            <select class="form-control" id="praticien" style="width: 250px;">
               <option>Dr Meyer</option>
               <option>Dr Gaunelle</option>
               <option>Dr Gsell</option>
@@ -75,7 +75,7 @@
         </div>
         <!--   Spécialité-->
         <div class="column m-3 " style="width: 200px;">
-          <div class="row ml-5 ">
+          <div class="row  ">
             <label for="spécialité" style="font-size:15px">Je choisis par spécialité:</label>
             <select class="form-control" id="spécialité" style="width: 200px;">
               <option>Généraliste</option>
@@ -87,13 +87,13 @@
         </div>
       </div>
 
-      <div class="row ml-5 ">
+      <div class="row ml-3 justify-content-center">
         <!--Motif + lieu-->
         <!--   Motif de la consultation-->
-        <div class="column m-3 " style="width: 200px;">
-          <div class="row ml-5 ">
+        <div class="column m-3 " style="width: 250px;">
+          <div class="row  ">
             <label for="motif" style="font-size:15px">Je choisis le motif de la consultation:</label>
-            <select class="form-control" id="motif" style="width: 200px;">
+            <select class="form-control" id="motif" style="width: 250px;">
               <option>Examens suivis nourrissons <2 ans</option>
               <option>Urgence</option>
               <option>Bilan annuel</option>
@@ -103,7 +103,7 @@
         </div>
         <!--   Lieu de la consultation-->
         <div class="column m-3 " style="width: 200px;">
-          <div class="row ml-5 ">
+          <div class="row  ">
             <label for="lieu" style="font-size:15px">Je choisis (si besoin) le lieu:</label>
             <select class="form-control" id="lieu" style="width: 200px;">
               <option>Cabinet</option>
@@ -118,8 +118,8 @@
       <div class="row ml-5 ">
         <!--Date-->
         <!--Date + calendar-->
-        <div class="column m-3 " style="width: 200px;">
-          <div class="row ml-5 ">
+        <div class="column m-3 " style="width: 480px;">
+          <div class="row  ">
             <h4 style="font-size:15px">Je choisis la date:</h4>
             <img src="assets/Images/calendar1.png">
             <!--        <mdb-calendar id="date" [events]="events" (eventEdited)="onEventEdit($event)" (eventAdded)="onEventAdd($event)"-->
@@ -128,12 +128,12 @@
         </div>
       </div>
 
-      <div class="row ml-5 ">
+      <div class="row ml-3 justify-content-center">
         <!--Heure + rappel-->
         <!--  Heure-->
         <div class="column m-3 " style="width: 200px;">
-          <div class="row ml-5 ">
-            <label for="heure" style="font-size:10px">Je choisis l'heure:</label>
+          <div class="row  ">
+            <label for="heure" style="font-size:15px">Je choisis l'heure:</label>
             <select class="form-control" id="heure" style="width: 200px;">
               <option>8h00</option>
               <option>9h00</option>
@@ -144,9 +144,9 @@
         </div>
         <!--  Rappels des informations-->
         <div class="column m-3 " style="width: 200px;">
-          <div class="row ml-5">
-            <label for="rappel" style="font-size:15px">Mon rdv:</label>
-            <p>Rdv le XXXX à XX avec Dr X à l'adresse X</p>
+          <div class="row ">
+            <label for="rappel" style="font-size:15px;">Mon rdv:</label>
+            <p style="font-size:15px; font-style: italic">Rdv le XXXX à XX avec Dr X à l'adresse X</p>
           </div>
         </div>
       </div>
