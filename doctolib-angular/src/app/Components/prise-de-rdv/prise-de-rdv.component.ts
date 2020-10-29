@@ -32,8 +32,6 @@ export class PriseDeRdvComponent implements OnInit {
   @ViewChild('calendar', {static: true}) calendar;
 
   constructor(private praticienService: PraticienService, private motifService: MotifDeConsultationService, private lieuService: LieuService) {
-    this.praticienService = praticienService;
-    this.motifService = motifService;
     this.lieuService = lieuService;
   }
 

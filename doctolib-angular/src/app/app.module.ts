@@ -11,6 +11,7 @@ import {ComptePatientComponent} from './Components/compte-patient/compte-patient
 import {CompteAdminComponent} from './Components/compte-admin/compte-admin.component';
 import {HttpClientModule} from '@angular/common/http';
 import { CalendarComponent } from './Components/calendar/calendar.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
 
@@ -27,7 +28,8 @@ import { CalendarComponent } from './Components/calendar/calendar.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
