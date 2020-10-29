@@ -10,6 +10,7 @@ import { ComptePraticienComponent } from './Components/compte-praticien/compte-p
 import { ComptePatientComponent } from './Components/compte-patient/compte-patient.component';
 import { CompteAdminComponent } from './Components/compte-admin/compte-admin.component';
 import {HttpClientModule} from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {HttpClientModule} from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

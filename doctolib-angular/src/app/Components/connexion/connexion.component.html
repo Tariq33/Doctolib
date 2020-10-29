@@ -1,1 +1,21 @@
-<p>connexion works!</p>
+<div *ngIf="!connexionActive" class="card-body">
+  <p style="text-align: center" class="login-card-description">Connectez-vous à votre compte</p>
+
+  <input type="text" name="identifiant" id="identifiant" class="form-control" placeholder="Identifiant" [(ngModel)]="identifiant">
+  <br>
+  <input type="password" name="password" id="password" class="form-control" placeholder="Mot de passe" [(ngModel)]="motDePasse">
+
+  <div style="text-align: center">
+    <div class="btn btn-block login-btn mb-4" (click)="connexion()"> Se connecter </div>
+  </div>
+  <a >Mot de passe oublié ?</a>
+  <br>
+  <p class="login-card-footer-text">Vous ne possédez pas de compte?</p>
+  <a class="text-reset"><b>Inscrivez-vous ici!</b></a>
+</div>
+
+<div *ngIf="connexionActive" class="card-body">
+  <p style="text-align: center" class="login-card-description">Connexion active ! </p>
+
+</div>
+

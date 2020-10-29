@@ -13,8 +13,6 @@ import {LieuService} from '../../Service/lieu.service';
 export class PriseDeRdvComponent implements OnInit {
 
   constructor(private praticienService: PraticienService, private motifService: MotifDeConsultationService, private lieuService: LieuService) {
-    this.praticienService = praticienService;
-    this.motifService = motifService;
     this.lieuService = lieuService;
   }
 
