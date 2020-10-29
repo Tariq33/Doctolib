@@ -1,6 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import * as moment from 'moment';
 import * as range from 'lodash.range';
+import {SessionService} from '../../Service/session.service';
+import {Patient} from '../../Model/patient';
+import {UtilisateurService} from '../../Service/utilisateur.service';
+import {Utilisateur} from '../../Model/utilisateur';
+import {PatientService} from '../../Service/patient.service';
 
 export interface CalendarDate {
   mDate: moment.Moment;
@@ -17,12 +22,15 @@ export class ComptePatientComponent implements OnInit {
   public currentDate: moment.Moment;
   public namesOfDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   public weeks: Array<CalendarDate[]> = [];
-
   public selectedDate;
+
+  patient: Patient = new Patient();
+  majInfo: boolean = false;
 
   @ViewChild('calendar', {static: true}) calendar;
 
-  constructor() {
+  constructor(private sessionService: SessionService, private utilisateurService: UtilisateurService, private patientService: PatientService) {
+    this.patient = this.sessionService.getUtilisateur();
   }
 
   ngOnInit(): void {
@@ -31,6 +39,22 @@ export class ComptePatientComponent implements OnInit {
     this.generateCalendar();
   }
 
+  UpdateFormulaire() {
+    this.majInfo=true;
+  }
+
+  ValidFormulaire(){
+    this.majInfo=false;
+    console.log(this.patient);
+    this.patientService.modify(this.patient).subscribe(resp => {
+      this.patient=resp;
+      this.sessionService.setUtilisateur(resp);
+    }, error => console.log(error));
+  }
+
+  CancelForm(){
+    this.majInfo=false;
+  }
 
   private generateCalendar(): void {
     const dates = this.fillDates(this.currentDate);
@@ -92,8 +116,6 @@ export class ComptePatientComponent implements OnInit {
     this.generateCalendar();
 
   }
-
-
 
 
 }
