@@ -1,11 +1,6 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {PraticienService} from '../../Service/praticien.service';
-import {Praticien} from '../../Model/praticien';
+import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
 import * as moment from 'moment';
 import * as range from 'lodash.range';
-import {MotifDeConsultation} from '../../Model/motif-de-consultation';
-import {MotifDeConsultationService} from '../../Service/motif-de-consultation.service';
-import {LieuService} from '../../Service/lieu.service';
 
 export interface CalendarDate {
   mDate: moment.Moment;
@@ -14,14 +9,11 @@ export interface CalendarDate {
 }
 
 @Component({
-  selector: 'app-prise-de-rdv',
-  templateUrl: './prise-de-rdv.component.html',
-  styleUrls: ['./prise-de-rdv.component.scss']
+  selector: 'app-calendar',
+  templateUrl: './calendar.component.html',
+  styleUrls: ['./calendar.component.scss']
 })
-export class PriseDeRdvComponent implements OnInit {
-
-  praticiens: Array<Praticien> = new Array<Praticien>();
-
+export class CalendarComponent implements OnInit {
   public currentDate: moment.Moment;
   public namesOfDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   public weeks: Array<CalendarDate[]> = [];
@@ -31,20 +23,13 @@ export class PriseDeRdvComponent implements OnInit {
 
   @ViewChild('calendar', {static: true}) calendar;
 
-  constructor(private praticienService: PraticienService) {
-  constructor(private praticienService: PraticienService, private motifService: MotifDeConsultationService, private lieuService: LieuService) {
-    this.lieuService = lieuService;
+  constructor() {
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.currentDate = moment();
     this.selectedDate = moment(this.currentDate).format('DD/MM/YYYY');
     this.generateCalendar();
-  }
-
-
-  listPraticien() {
-    return this.praticienService.findAll();
   }
 
   private generateCalendar(): void {
@@ -54,9 +39,6 @@ export class PriseDeRdvComponent implements OnInit {
       weeks.push(dates.splice(0, 7));
     }
     this.weeks = weeks;
-  }
-  listMotif() {
-    return this.motifService.findAll();
   }
 
   private fillDates(currentMoment: moment.Moment) {
@@ -123,9 +105,5 @@ export class PriseDeRdvComponent implements OnInit {
   // }
 
 
-  listLieu() {
-    return this.lieuService.findAll();
-  }
-
-
 }
+

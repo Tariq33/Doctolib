@@ -23,6 +23,9 @@
     "@fortawesome/fontawesome-free-webfonts": "^1.0.9",
     "bootstrap": "^4.5.3",
     "jquery": "^3.5.1",
+    "lodash.range": "^3.2.0",
+    "moment": "^2.29.1",
+    "multiple-date-picker": "^2.1.6",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

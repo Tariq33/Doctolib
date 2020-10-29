@@ -1,38 +1,39 @@
 .calendar {
-  position: relative;
+  position: absolute;
   top: 36px;
   padding: 2px 0 0;
+  width: 500px;
+  height: 250px;
   background-color: #fff;
   box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.1), 0 4px 25px 0 rgba(0, 184, 178, 0.08);
   border-radius: 4px;
   z-index: 20;
-
   &__wrapper {
-    position: center;
+    position: relative;
     margin-bottom: 17px;
   }
-  //&__input-wrapper {
-  //  width: 212px;
-  //  position: relative;
-  //  height: 36px;
-  //  cursor: pointer;
-  //}
-  //&__input {
-  //  width: 210px;
-  //  height: 100%;
-  //  outline: none;
-  //  border: 2px solid #dddddd;
-  //  border-radius: 2px;
-  //  padding: 0 12px;
-  //  font-family: OpenSans, sans-serif;
-  //  font-size: 13px;
-  //  color: #101820;
-  //  cursor: pointer;
-  //  box-sizing: border-box;
-  //  &:focus, &:active {
-  //    border-color: #3F729B;
-  //  }
-  //}
+  &__input-wrapper {
+    width: 212px;
+    position: relative;
+    height: 36px;
+    cursor: pointer;
+  }
+  &__input {
+    width: 210px;
+    height: 100%;
+    outline: none;
+    border: 2px solid #dddddd;
+    border-radius: 2px;
+    padding: 0 12px;
+    font-family: OpenSans, sans-serif;
+    font-size: 13px;
+    color: #101820;
+    cursor: pointer;
+    box-sizing: border-box;
+    &:focus, &:active {
+      border-color: #3F729B;
+    }
+  }
   &__navs {
     background-color: #3F729B;
     border-top-left-radius: 3px;
