@@ -6,11 +6,12 @@ import {ComptePatientComponent} from './Components/compte-patient/compte-patient
 import {ComptePraticienComponent} from './Components/compte-praticien/compte-praticien.component';
 import {ConnexionComponent} from './Components/connexion/connexion.component';
 import {PriseDeRdvComponent} from './Components/prise-de-rdv/prise-de-rdv.component';
+import {AuthGuardAdminService} from "./guard/auth-guard-admin.service";
 
 const routes: Routes = [
   {path: "", component: AccueilComponent},
   {path: "accueil", component: AccueilComponent},
-  {path: "compteAdmin", component: CompteAdminComponent},
+  {path: "compteAdmin", component: CompteAdminComponent, canActivate: [AuthGuardAdminService]},
   {path: "comptePatient", component: ComptePatientComponent},
   {path: "comptePraticien", component: ComptePraticienComponent},
   {path: "connexion", component: ConnexionComponent},
