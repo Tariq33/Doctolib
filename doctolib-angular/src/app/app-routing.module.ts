@@ -6,6 +6,7 @@ import {ComptePatientComponent} from './Components/compte-patient/compte-patient
 import {ComptePraticienComponent} from './Components/compte-praticien/compte-praticien.component';
 import {ConnexionComponent} from './Components/connexion/connexion.component';
 import {PriseDeRdvComponent} from './Components/prise-de-rdv/prise-de-rdv.component';
+import {CalendarComponent} from './Components/calendar/calendar.component';
 
 const routes: Routes = [
   {path: "", component: AccueilComponent},
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path: "comptePatient", component: ComptePatientComponent},
   {path: "comptePraticien", component: ComptePraticienComponent},
   {path: "connexion", component: ConnexionComponent},
-  {path: "priseDeRdv", component: PriseDeRdvComponent}
+  {path: "priseDeRdv", component: PriseDeRdvComponent},
+  {path: "calendar", component: CalendarComponent}
 ];
 
 @NgModule({

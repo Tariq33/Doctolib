@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
 import * as moment from 'moment';
 import * as range from 'lodash.range';
 
@@ -9,28 +9,28 @@ export interface CalendarDate {
 }
 
 @Component({
-  selector: 'app-compte-patient',
-  templateUrl: './compte-patient.component.html',
-  styleUrls: ['./compte-patient.component.scss']
+  selector: 'app-calendar',
+  templateUrl: './calendar.component.html',
+  styleUrls: ['./calendar.component.scss']
 })
-export class ComptePatientComponent implements OnInit {
+export class CalendarComponent implements OnInit {
   public currentDate: moment.Moment;
   public namesOfDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   public weeks: Array<CalendarDate[]> = [];
 
   public selectedDate;
+  public show: boolean;
 
   @ViewChild('calendar', {static: true}) calendar;
 
   constructor() {
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.currentDate = moment();
     this.selectedDate = moment(this.currentDate).format('DD/MM/YYYY');
     this.generateCalendar();
   }
-
 
   private generateCalendar(): void {
     const dates = this.fillDates(this.currentDate);
@@ -92,4 +92,18 @@ export class ComptePatientComponent implements OnInit {
     this.generateCalendar();
 
   }
+
+  // private isSelected(date: moment.Moment): boolean {
+  //   return moment(date).isBefore(this.selectedEndWeek) && moment(date).isAfter(this.selectedStartWeek)
+  //     || moment(date.format('YYYY-MM-DD')).isSame(this.selectedStartWeek.format('YYYY-MM-DD'))
+  //     || moment(date.format('YYYY-MM-DD')).isSame(this.selectedEndWeek.format('YYYY-MM-DD'));
+  // }
+  //
+  // public isDayBeforeLastSat(date: moment.Moment): boolean {
+  //   const lastSat = moment().weekday(-1);
+  //   return moment(date).isSameOrBefore(lastSat);
+  // }
+
+
 }
+
