@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {PraticienService} from '../../Service/praticien.service';
 import {Praticien} from '../../Model/praticien';
+import {MotifDeConsultation} from '../../Model/motif-de-consultation';
+import {MotifDeConsultationService} from '../../Service/motif-de-consultation.service';
+import {LieuService} from '../../Service/lieu.service';
 
 @Component({
   selector: 'app-prise-de-rdv',
@@ -9,21 +12,26 @@ import {Praticien} from '../../Model/praticien';
 })
 export class PriseDeRdvComponent implements OnInit {
 
-  praticiens: Array<Praticien> = new Array<Praticien>();
-
-  constructor(private praticienService: PraticienService) {
+  constructor(private praticienService: PraticienService, private motifService: MotifDeConsultationService, private lieuService: LieuService) {
     this.praticienService = praticienService;
-    this.load();
-    console.log(this.praticiens);
+    this.motifService = motifService;
+    this.lieuService = lieuService;
   }
 
   ngOnInit(): void {
   }
 
 
-  load() {
-    this.praticienService.load();
-    this.praticiens = this.praticienService.findAll();
+  listPraticien() {
+    return this.praticienService.findAll();
+  }
+
+  listMotif() {
+    return this.motifService.findAll();
+  }
+
+  listLieu() {
+    return this.lieuService.findAll();
   }
 
 

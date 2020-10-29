@@ -17,18 +17,16 @@
       <div class="row ml-5 mb-3">
         <label for="praticien" style="font-size:15px">Je choisis par praticien:</label>
         <select  class="form-control" id="praticien" style="width: 250px;">
-          <option *ngFor="let praticien of praticiens">{{praticien.prenom}}</option>
+          <option *ngFor="let praticien of listPraticien()">{{praticien.prenom}}</option>
         </select>
 
       </div>
       <!--   Spécialité-->
       <div class="row ml-5 mb-3">
-        <label for="spécialité" style="font-size:15px">Je choisis par spécialité:</label>
-        <select class="form-control" id="spécialité" style="width: 250px;">
-          <option>Généraliste</option>
-          <option>Généraliste</option>
-          <option>Dentiste</option>
-          <option>Pneumopédiatre</option>
+        <label for="specialite" style="font-size:15px">Je choisis par spécialité:</label>
+        <select  class="form-control" id="specialite" style="width: 250px;">
+          <option *ngFor="let praticien of listPraticien()">{{praticien.specialitePrincipale}}</option>
+          <option *ngFor="let praticien of listPraticien()">{{praticien.specialiteSecondaire}}</option>
         </select>
       </div>
     </div>
@@ -42,21 +40,15 @@
       <!--   Motif de la consultation-->
       <div class="row ml-5 mb-3">
         <label for="motif" style="font-size:15px">Je choisis le motif de la consultation:</label>
-        <select class="form-control" id="motif" style="width: 250px;">
-          <option>Examens suivis nourrissons <2 ans</option>
-          <option>Urgence</option>
-          <option>Bilan annuel</option>
-          <option>Exploration respiratoire</option>
+        <select  class="form-control" id="motif" style="width: 250px;">
+          <option *ngFor="let motif of listMotif()">{{motif.nom}}</option>
         </select>
       </div>
       <!--   Lieu de la consultation-->
       <div class="row ml-5 mb-3">
         <label for="lieu" style="font-size:15px">Je choisis (si besoin) le lieu:</label>
-        <select class="form-control" id="lieu" style="width: 250px;">
-          <option>Cabinet</option>
-          <option>Hôpital</option>
-          <option>Clinique</option>
-          <option>Urgences</option>
+        <select  class="form-control" id="lieu" style="width: 250px;">
+          <option *ngFor="let lieu of listLieu()">{{lieu.nom}}</option>
         </select>
       </div>
     </div>
