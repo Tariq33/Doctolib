@@ -3,6 +3,9 @@ import {PraticienService} from '../../Service/praticien.service';
 import {Praticien} from '../../Model/praticien';
 import * as moment from 'moment';
 import * as range from 'lodash.range';
+import {MotifDeConsultation} from '../../Model/motif-de-consultation';
+import {MotifDeConsultationService} from '../../Service/motif-de-consultation.service';
+import {LieuService} from '../../Service/lieu.service';
 
 export interface CalendarDate {
   mDate: moment.Moment;
@@ -29,9 +32,10 @@ export class PriseDeRdvComponent implements OnInit {
   @ViewChild('calendar', {static: true}) calendar;
 
   constructor(private praticienService: PraticienService) {
+  constructor(private praticienService: PraticienService, private motifService: MotifDeConsultationService, private lieuService: LieuService) {
     this.praticienService = praticienService;
-    this.load();
-    console.log(this.praticiens);
+    this.motifService = motifService;
+    this.lieuService = lieuService;
   }
 
   ngOnInit(): void {
@@ -41,9 +45,8 @@ export class PriseDeRdvComponent implements OnInit {
   }
 
 
-  load() {
-    this.praticienService.load();
-    this.praticiens = this.praticienService.findAll();
+  listPraticien() {
+    return this.praticienService.findAll();
   }
 
   private generateCalendar(): void {
@@ -53,6 +56,9 @@ export class PriseDeRdvComponent implements OnInit {
       weeks.push(dates.splice(0, 7));
     }
     this.weeks = weeks;
+  }
+  listMotif() {
+    return this.motifService.findAll();
   }
 
   private fillDates(currentMoment: moment.Moment) {
@@ -117,6 +123,11 @@ export class PriseDeRdvComponent implements OnInit {
   //   const lastSat = moment().weekday(-1);
   //   return moment(date).isSameOrBefore(lastSat);
   // }
+
+
+  listLieu() {
+    return this.lieuService.findAll();
+  }
 
 
 }
