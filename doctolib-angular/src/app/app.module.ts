@@ -13,6 +13,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {CalendarComponent } from './Components/calendar/calendar.component';
 import {FormsModule} from '@angular/forms';
 import {AccesDeniedComponent} from './Components/acces-denied/acces-denied.component';
+import {CreationCompteComponent} from "./Components/creation-compte/creation-compte.component";
 
 @NgModule({
 
@@ -25,7 +26,8 @@ import {AccesDeniedComponent} from './Components/acces-denied/acces-denied.compo
     ComptePatientComponent,
     CompteAdminComponent,
     CalendarComponent,
-    AccesDeniedComponent
+    AccesDeniedComponent,
+    CreationCompteComponent
   ],
   imports: [
     BrowserModule,
