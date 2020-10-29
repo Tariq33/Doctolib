@@ -37,6 +37,10 @@ export class SessionService {
     return JSON.parse(sessionStorage.getItem("utilisateur")).identifiant;
   }
 
+  getType():string{
+    return JSON.parse(sessionStorage.getItem("utilisateur")).type;
+  }
+
   offUtilisateur(){
     sessionStorage.clear();
     window.location.reload();

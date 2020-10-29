@@ -24,11 +24,20 @@ export class ConnexionComponent implements OnInit {
   connexion() {
     this.utilisateurService.findByIdentifiantAndMotDePasse(this.identifiant, this.motDePasse).subscribe(resp => {
         this.sessionService.setUtilisateur(resp);
+
         if (resp == null) {
-          console.log('Existe pas');
+          console.log("Le compte n'existe pas === afficher un message d'erreur ");
         } else {
           this.connexionActive = true;
-          this.router.navigateByUrl('/comptePatient');
+
+          if(this.sessionService.getType()=='patient') {
+            this.router.navigateByUrl('comptePatient');
+          }
+          else if(this.sessionService.getType()=='praticien') {
+            this.router.navigateByUrl('comptePraticien');}
+          else{
+              this.router.navigateByUrl('compteAdmin');
+            }
         }
         console.log(this.sessionService.getUtilisateur());
       },
