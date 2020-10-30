@@ -46,4 +46,10 @@ export class ConnexionComponent implements OnInit {
   }
 
 
+  inscription() {
+
+            this.router.navigateByUrl('creationCompte');
+
+  }
+
 }

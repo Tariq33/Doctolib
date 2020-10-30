@@ -12,6 +12,7 @@ import {CalendarComponent} from './Components/calendar/calendar.component';
 import {AuthGuardAdminService} from './Guard/auth-guard-admin.service';
 import {AuthGuardPatientService} from './Guard/auth-guard-patient.service';
 import {AuthGuardPraticienService} from './Guard/auth-guard-praticien.service';
+import {CreationCompteComponent} from "./Components/creation-compte/creation-compte.component";
 
 
 
@@ -25,6 +26,7 @@ const routes: Routes = [
   {path: "priseDeRdv", component: PriseDeRdvComponent},
   {path: "calendar", component: CalendarComponent},
   {path: "accessDenied", component: AccesDeniedComponent},
+  {path: "creationCompte", component: CreationCompteComponent},
 ];
 
 @NgModule({
