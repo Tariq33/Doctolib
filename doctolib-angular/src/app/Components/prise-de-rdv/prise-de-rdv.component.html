@@ -71,9 +71,9 @@
       <!--   Lieu de la consultation-->
       <div class="row ml-5 mb-3">
         <label for="lieu" style="font-size:15px">Je choisis (si besoin) le lieu:</label>
-        <select class="form-control" id="lieu" style="width: 250px;" [(ngModel)]="lieuSelectionne">
+        <select class="form-control" id="lieu" style="width: 250px;" [(ngModel)]="lieuSelectionne.id">
           <option >Choisissez un lieu de consultation</option>
-          <option *ngFor="let lieu of lieuxDuMotif">{{lieu.nom}} - {{lieu.ville}}</option>
+          <option [value]="lieu.id" *ngFor="let lieu of lieuxDuMotif">{{lieu.nom}} - {{lieu.ville}}</option>
         </select>
       </div>
     </div>
@@ -131,14 +131,16 @@
       <!--  Heure-->
       <div class="row ml-5 mb-3">
         <label for="heure" style="font-size:15px">Je choisis l'heure:</label>
-        <select class="form-control" id="heure" style="width: 250px;">
+        <select class="form-control" id="heure" style="width: 250px;" [(ngModel)]="heureSelectionnee">
           <option *ngFor="let creneau of creneauxDispo">{{creneau.date | slice:11}}</option>
         </select>
       </div>
       <!--  Rappels des informations-->
-      <div class="row ml-5">
-        <label for="rappel" style="font-size:15px">Mon rdv:</label>
-        <p>Rdv le XXXX à XX avec Dr X à l'adresse X</p>
+      <div *ngIf="heureSelectionnee!=''" class="row ml-5">
+        <label style="font-size:15px">Mon rdv:</label>
+        <p>Rdv le {{heureSelectionnee}} à {{lieuSelectionne.nom}} avec le Dr {{praticienSelectionne.nom}} à l'adresse suivante : {{lieuSelectionne.numero}}
+          {{lieuSelectionne.rue}}  {{lieuSelectionne.complement}}
+            {{lieuSelectionne.codePostal}}  {{lieuSelectionne.ville}}</p>
 
       </div>
     </div>
@@ -150,7 +152,7 @@
         <h5 class="mb-4 mt-2 " style="font-size:18px">Je confirme mon rendez-vous</h5>
       </div>
       <!--  Connexion-->
-      <form action="/action_page.php">
+      <form *ngIf="!connexionActive">
         <div class="form-group ml-5 mb-3 ">
           <label for="email">Email address:</label>
           <input type="email" class="form-control" placeholder="Enter email" id="email">
@@ -159,11 +161,13 @@
           <label for="pwd">Password:</label>
           <input type="password" class="form-control" placeholder="Enter password" id="pwd">
         </div>
-        <a class="btn float-right mb-3" style="background-color :#3F729B; color: black; border-right-color: black"
+        <a (click)="connexion()" class="btn float-right mb-3" style="background-color :#3F729B; color: black; border-right-color: black"
            data-toggle="modal">
           <i class="fa fa-check"></i>
         </a>
       </form>
+
+
       <!--      <div class="row ml-5 mb-3 form-group" style="width: 250px;">-->
       <!--        <label style="font-size:15px" for="usr">Identifiant:</label>-->
       <!--        <input type="text" class="form-control" id="usr">-->

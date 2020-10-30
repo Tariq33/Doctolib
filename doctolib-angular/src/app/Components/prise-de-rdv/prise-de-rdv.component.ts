@@ -9,6 +9,9 @@ import {LieuService} from '../../Service/lieu.service';
 import {Lieu} from '../../Model/lieu';
 import {Creneau} from '../../Model/creneau';
 import {CreneauService} from '../../Service/creneau.service';
+import {SessionService} from '../../Service/session.service';
+import {UtilisateurService} from '../../Service/utilisateur.service';
+import {Router} from '@angular/router';
 
 export interface CalendarDate {
   mDate: moment.Moment;
@@ -51,7 +54,7 @@ export class PriseDeRdvComponent implements OnInit {
 
   @ViewChild('calendar', {static: true}) calendar;
 
-  constructor(private praticienService: PraticienService, private motifService: MotifDeConsultationService, private lieuService: LieuService, private creneauService : CreneauService) {
+  constructor(private sessionService: SessionService, private utilisateurService: UtilisateurService, private router: Router, private praticienService: PraticienService, private motifService: MotifDeConsultationService, private lieuService: LieuService, private creneauService : CreneauService) {
     this.lieuService = lieuService;
   }
 
@@ -226,14 +229,48 @@ export class PriseDeRdvComponent implements OnInit {
   // }
 
   creneauxDispo : Array<Creneau>;
+  heureSelectionnee: string = "";
 
   checkSiCreneauxDispo(date: CalendarDate){
     // console.log(moment(date.mDate).format('DD-MM-YYYY'));
     this.creneauService.findByDateAndPraticien(moment(date.mDate).format('DD-MM-YYYY'), this.praticienSelectionne.id).subscribe(resp => {
       this.creneauxDispo=resp;
+    }, error => console.log('erreur'));
 
+    this.lieuService.findById(this.lieuSelectionne.id).subscribe(resp => {
+      this.lieuSelectionne=resp;
     }, error => console.log('erreur'));
   }
+
+  identifiant: string;
+  motDePasse: string;
+  connexionActive: boolean;
+
+  connexion() {
+    this.utilisateurService.findByIdentifiantAndMotDePasse(this.identifiant, this.motDePasse).subscribe(resp => {
+        this.sessionService.setUtilisateur(resp);
+
+        if (resp == null) {
+          console.log("Le compte n'existe pas === afficher un message d'erreur ");
+        } else {
+          this.connexionActive = true;
+
+          if(this.sessionService.getType()=='patient') {
+            this.router.navigateByUrl('comptePatient');
+          }
+          else if(this.sessionService.getType()=='praticien') {
+            this.router.navigateByUrl('comptePraticien');}
+          else{
+            this.router.navigateByUrl('compteAdmin');
+          }
+        }
+        console.log(this.sessionService.getUtilisateur());
+      },
+      error => console.log(error)
+    );
+  }
+
+
 
 
 
