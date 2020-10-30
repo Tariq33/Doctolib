@@ -20,7 +20,14 @@ export interface CalendarDate {
 })
 export class PriseDeRdvComponent implements OnInit {
 
-  praticiens: Array<Praticien> = new Array<Praticien>();
+  nom: string;
+  rdvFormNomPraticien: Praticien = new Praticien();
+  nomPraticien : string;
+  praticienChoisi : boolean = false;
+  praticienSelectionne : Praticien = new Praticien();
+  specialiteChoisie : boolean = false;
+  specialiteSelectionnee : string;
+  praticiensParSpecialite: Array<Praticien>;
 
   public currentDate: moment.Moment;
   public namesOfDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -29,10 +36,60 @@ export class PriseDeRdvComponent implements OnInit {
   public selectedDate;
   public show: boolean;
 
+
   @ViewChild('calendar', {static: true}) calendar;
 
   constructor(private praticienService: PraticienService, private motifService: MotifDeConsultationService, private lieuService: LieuService) {
     this.lieuService = lieuService;
+  }
+
+  listPraticien() {
+    return this.praticienService.findAll();
+  }
+
+  listPraticienSpecialite(){
+    let listSpecialite: Array<string> = new Array<string>();
+    let listSpecialite2: Array<string> = new Array<string>();
+
+    for (let spe of this.listPraticien()) {
+      listSpecialite.push(spe.specialitePrincipale);
+      listSpecialite.push(spe.specialiteSecondaire);
+    }
+
+    for (let element of listSpecialite) {
+      if (!listSpecialite2.includes(element)) {
+        listSpecialite2.push(element);
+      }
+    }
+    return listSpecialite2;
+  }
+
+  listLieu() {
+    return this.lieuService.findAll();
+  }
+
+  listMotif() {
+    return this.motifService.findAll();
+  }
+
+  onChangePraticien(id) {
+    console.log(id);
+    this.praticienChoisi=true;
+    this.praticienService.findById(id).subscribe(resp => {
+    this.praticienSelectionne = resp;
+    }, error => console.log('erreur'));
+  }
+
+  onChangeSpecialite(newValue){
+    this.specialiteSelectionnee = newValue;
+    this.specialiteChoisie = true;
+    this.listSpecialite();
+  }
+
+  listSpecialite() {
+    this.praticienService.findBySpecialite(this.specialiteSelectionnee).subscribe(resp => {
+      this.praticiensParSpecialite = resp;
+    }, error => console.log('erreur'));
   }
 
   ngOnInit(): void {
@@ -41,11 +98,7 @@ export class PriseDeRdvComponent implements OnInit {
     this.generateCalendar();
   }
 
-
-  listPraticien() {
-    return this.praticienService.findAll();
-  }
-
+  // CALENDAR
   private generateCalendar(): void {
     const dates = this.fillDates(this.currentDate);
     const weeks = [];
@@ -53,9 +106,6 @@ export class PriseDeRdvComponent implements OnInit {
       weeks.push(dates.splice(0, 7));
     }
     this.weeks = weeks;
-  }
-  listMotif() {
-    return this.motifService.findAll();
   }
 
   private fillDates(currentMoment: moment.Moment) {
@@ -120,11 +170,6 @@ export class PriseDeRdvComponent implements OnInit {
   //   const lastSat = moment().weekday(-1);
   //   return moment(date).isSameOrBefore(lastSat);
   // }
-
-
-  listLieu() {
-    return this.lieuService.findAll();
-  }
 
 
 }

@@ -48,7 +48,25 @@ public class PraticienRestController {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
 	}
-
+	
+	@GetMapping("/bynom/{nom}")
+	@JsonView(Views.ViewPraticien.class)
+	public Praticien findByNom(@PathVariable String nom) {
+		
+		Praticien praticien = praticienRepo.findByNom(nom);
+		
+		return praticien;	
+	}
+	
+	@GetMapping("/byspecialite/{specialite}")
+	@JsonView(Views.ViewPraticien.class)
+	public List<Praticien> findBySpecialite(@PathVariable String specialite) {
+		
+		List<Praticien> praticiens = praticienRepo.findBySpecialite(specialite);
+		
+		return praticiens;	
+	}
+	
 	@PostMapping("")
 	@JsonView(Views.ViewPraticien.class)
 	public Praticien create(@RequestBody Praticien praticien) {
