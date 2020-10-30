@@ -14,23 +14,42 @@
         <h5 class="mb-4 mt-2" style="font-size:18px">Praticien et/spécialité</h5>
       </div>
       <!--   Praticien-->
-      <div class="row ml-5 mb-3">
-        <label for="praticien" style="font-size:15px">Je choisis par praticien:</label>
-        <select class="form-control" id="praticien" style="width: 250px;" >
-          <option *ngFor="let praticien of listPraticien()">{{praticien.nom}}</option>
+      <div *ngIf="!specialiteChoisie" class="row ml-5 mb-3">
+        <label for="praticienForm1" style="font-size:15px">Je choisis par praticien:</label>
+        <select class="form-control" id="praticienForm1" style="width: 250px;" [ngModel]="praticienSelectionne.id" (ngModelChange)="onChangePraticien($event)">
+          <option >Choisissez un praticien</option>
+          <option [value]="praticien.id" *ngFor="let praticien of listPraticien()" >{{praticien.nom}}</option>
         </select>
-<!--        <button class="btn" style="background-color :#8bc34a; color: black"-->
-<!--                (click)="loadSpecialite(rdvFormNomPraticien.specialitePrincipale)">Valider-->
-<!--        </button>-->
       </div>
+
+<!--      [value]="praticien.id"-->
+
+      <div *ngIf="specialiteChoisie" class="row ml-5 mb-3">
+        <label for="praticienForm2" style="font-size:15px">Je choisis par praticien:</label>
+        <select class="form-control" id="praticienForm2" style="width: 250px;">
+          <option >Choisissez un praticien</option>
+          <option *ngFor="let praticien of praticiensParSpecialite" >{{praticien.nom}}</option>
+        </select>
+      </div>
+
       <!--   Spécialité-->
-      <div class="row ml-5 mb-3">
-        <label for="specialite" style="font-size:15px">Je choisis par spécialité:</label>
-        <select class="form-control" id="specialite" style="width: 250px;">
-          <option *ngFor="let praticien of listSpecialite(nomPraticien)">{{specialite}}</option>
-<!--          <option *ngFor="let praticien of listPraticien()">{{praticien.specialiteSecondaire}}</option>-->
+      <div *ngIf="!praticienChoisi" class="row ml-5 mb-3">
+        <label for="specialiteForm1" style="font-size:15px">Je choisis par spécialité:</label>
+        <select class="form-control" id="specialiteForm1" style="width: 250px;" [ngModel]="specialiteSelectionnee" (ngModelChange)="onChangeSpecialite($event)">
+          <option >Choisissez une spécialité</option>
+          <option *ngFor="let specialite of listPraticienSpecialite()">{{specialite}}</option>
         </select>
       </div>
+
+      <div *ngIf="praticienChoisi" class="row ml-5 mb-3">
+        <label for="specialiteForm2" style="font-size:15px">Je choisis par spécialité:</label>
+        <select class="form-control" id="specialiteForm2" style="width: 250px;">
+          <option >Choisissez une spécialité</option>
+          <option >{{praticienSelectionne.specialitePrincipale}}</option>
+          <option >{{praticienSelectionne.specialiteSecondaire}}</option>
+        </select>
+      </div>
+
     </div>
 
     <!--   MOTIF ET LIEU DE CONSULTATION-->
