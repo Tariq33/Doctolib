@@ -22,6 +22,10 @@ export class MotifDeConsultationService {
     return this.http.get<MotifDeConsultation>('http://localhost:8080/motif/' + id);
   }
 
+  findByPraticienId(id: number): Observable<Array<MotifDeConsultation>> {
+    return this.http.get<Array<MotifDeConsultation>>('http://localhost:8080/motif/bypraticienid/' + id);
+  }
+
   create(motif: MotifDeConsultation) {
     return this.http.post<MotifDeConsultation>('http://localhost:8080/motif', motif);
   }

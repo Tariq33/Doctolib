@@ -1,5 +1,9 @@
 package sopra.doctolib.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +23,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import sopra.doctolib.model.Creneau;
+import sopra.doctolib.model.Lieu;
 import sopra.doctolib.model.Views;
 import sopra.doctolib.persistence.ICreneauRepository;
 
@@ -29,7 +34,7 @@ public class CreneauRestController {
 
 	@Autowired
 	private ICreneauRepository creneauRepo;
-	
+
 	@GetMapping("")
 	@JsonView(Views.ViewCreneau.class)
 	public List<Creneau> findAll() {
@@ -48,10 +53,30 @@ public class CreneauRestController {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
 	}
-	
-	
-	
-	
+
+	@GetMapping("/bydateAndPraticien/{date}/{id}")
+	@JsonView(Views.ViewCreneau.class)
+	public List<Creneau> find(@PathVariable String date, @PathVariable Long id) throws ParseException {
+		System.out.println(date);
+		
+		String dtDebut = date;
+		String dtFin = date;
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		Calendar c = Calendar.getInstance();
+		c.setTime(sdf.parse(dtFin));
+		c.add(Calendar.DATE, 1);  // number of days to add
+		dtFin = sdf.format(c.getTime());  // dt is now the new date
+		
+		Date dtDebutDate = sdf.parse(dtDebut);
+		Date dtFinDate = sdf.parse(dtFin);
+
+		List<Creneau> creneaux = creneauRepo.FindByDateAndPraticien(dtDebutDate, dtFinDate, id);
+
+		return creneaux;
+
+	}
+
 //	@GetMapping("/findcreneaubypraticienspecialitemotif/{praticien}/{specialite}/{motif}")
 //	@JsonView(Views.ViewCreneau.class)
 //	public List<Creneau> FindCreneauByPraticienSpecialiteMotif(@PathVariable String praticien, @PathVariable String specialite, @PathVariable String motif) {
@@ -60,10 +85,6 @@ public class CreneauRestController {
 //		
 //		return creneau;	
 //	}
-	
-	
-	
-	
 
 	@PostMapping("")
 	@JsonView(Views.ViewCreneau.class)

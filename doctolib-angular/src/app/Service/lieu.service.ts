@@ -22,6 +22,10 @@ export class LieuService {
     return this.http.get<Lieu>('http://localhost:8080/lieu/' + id);
   }
 
+  findByMotif(id: number): Observable<Array<Lieu>>{
+    return this.http.get<Array<Lieu>>('http://localhost:8080/lieu/bymotifid/' + id);
+  }
+
   create(lieu: Lieu) {
     return this.http.post<Lieu>('http://localhost:8080/lieu', lieu);
   }

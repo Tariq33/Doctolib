@@ -19,6 +19,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import sopra.doctolib.model.Lieu;
+import sopra.doctolib.model.MotifDeConsultation;
 import sopra.doctolib.model.Views;
 import sopra.doctolib.persistence.ILieuRepository;
 
@@ -46,6 +47,15 @@ public class LieuRestController {
 		} else {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
+	}
+
+	@GetMapping("/bymotifid/{id}")
+	@JsonView(Views.ViewLieu.class)
+	public List<Lieu> findByMotif(@PathVariable Long id) {
+
+		List<Lieu> lieux = lieuRepo.findByMotif(id);
+
+		return lieux;
 	}
 
 	@PostMapping("")
