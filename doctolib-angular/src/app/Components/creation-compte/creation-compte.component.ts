@@ -29,11 +29,8 @@ export class CreationCompteComponent implements OnInit {
   }
 
   save() {
-    console.log(this.patientForm);
+    this.patientForm.type = "patient";
     this.patientService.create(this.patientForm).subscribe(resp => {
-    /*  this.patientForm.type = "patient"; */
-     /* this.patientForm.id =  */
-
         this.patientForm = new Patient();
         this.router.navigateByUrl('/connexion');
       },
