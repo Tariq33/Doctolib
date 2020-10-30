@@ -14,5 +14,5 @@ public interface IPraticienRepository extends JpaRepository<Praticien, Long> {
 	Praticien findByNom(@Param("nom") String nom);
 	
 	@Query("select p from Praticien p where p.specialitePrincipale = :specialite or p.specialiteSecondaire = :specialite")
-	List<Praticien> findBySpecialite(@Param("specialite") String nom);
+	List<Praticien> findBySpecialite(@Param("specialite") String specialite);
 }

@@ -36,6 +36,15 @@ public class MotifDeConsultationRestController {
 		return motifRepo.findAll();
 	}
 
+	@GetMapping("/bypraticienid/{id}")
+	@JsonView(Views.ViewMotifDeConsultation.class)
+	public List<MotifDeConsultation> findByPraticienId(@PathVariable Long id) {
+		
+		List<MotifDeConsultation> motifs = motifRepo.findByPraticienId(id);
+		
+		return motifs;	
+	}
+	
 	@GetMapping("/{id}")
 	@JsonView(Views.ViewMotifDeConsultation.class)
 	public MotifDeConsultation find(@PathVariable Long id) {

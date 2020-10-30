@@ -22,11 +22,11 @@ export class PriseDeRdvComponent implements OnInit {
 
   nom: string;
   rdvFormNomPraticien: Praticien = new Praticien();
-  nomPraticien : string;
-  praticienChoisi : boolean = false;
-  praticienSelectionne : Praticien = new Praticien();
-  specialiteChoisie : boolean = false;
-  specialiteSelectionnee : string;
+  nomPraticien: string;
+  praticienChoisi: boolean = false;
+  praticienSelectionne: Praticien = new Praticien();
+  specialiteChoisie: boolean = false;
+  specialiteSelectionnee: string;
   praticiensParSpecialite: Array<Praticien>;
 
   public currentDate: moment.Moment;
@@ -47,7 +47,7 @@ export class PriseDeRdvComponent implements OnInit {
     return this.praticienService.findAll();
   }
 
-  listPraticienSpecialite(){
+  listPraticienSpecialite() {
     let listSpecialite: Array<string> = new Array<string>();
     let listSpecialite2: Array<string> = new Array<string>();
 
@@ -69,18 +69,23 @@ export class PriseDeRdvComponent implements OnInit {
   }
 
   listMotif() {
+    this.motifService.findByPraticienId(this.praticienSelectionne.id).subscribe(resp => {
+      resp;
+    }, error => console.log('erreur'));
+
+
     return this.motifService.findAll();
   }
 
   onChangePraticien(id) {
     console.log(id);
-    this.praticienChoisi=true;
+    this.praticienChoisi = true;
     this.praticienService.findById(id).subscribe(resp => {
-    this.praticienSelectionne = resp;
+      this.praticienSelectionne = resp;
     }, error => console.log('erreur'));
   }
 
-  onChangeSpecialite(newValue){
+  onChangeSpecialite(newValue) {
     this.specialiteSelectionnee = newValue;
     this.specialiteChoisie = true;
     this.listSpecialite();
