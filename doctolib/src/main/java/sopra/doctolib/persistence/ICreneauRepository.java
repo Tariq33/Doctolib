@@ -1,5 +1,6 @@
 package sopra.doctolib.persistence;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,6 +12,10 @@ import sopra.doctolib.model.Creneau;
 public interface ICreneauRepository extends JpaRepository<Creneau, Long> {
 
 	 
+	@Query("select c from Creneau c where c.date>:dtDebut and c.date<:dtFin and c.praticien.id=:id")
+	List<Creneau> FindByDateAndPraticien(@Param("dtDebut") Date dtDebut, @Param("dtFin") Date dtFin, @Param("id") Long id);
+	
+	
 //	@Query("select c from Creneau c where c.Praticien=:Praticien and c.Specialite=:Specialite and c.Motif=:Motif")
 //	List<Creneau> FindCreneauByPraticienSpecialiteMotif(@Param("Praticien") String Praticien, @Param("Specialite") String Specialite, @Param("Motif") String Motif);
 //	

@@ -11,7 +11,7 @@
     <div class="column m-3 " style="width: 350px;">
       <!--   Titre-->
       <div class="row justify-content-center">
-        <h5 class="mb-4 mt-2" style="font-size:18px">Praticien et/spécialité</h5>
+        <h5 class="mb-4 mt-2" style="font-size:18px" (click)="test()">Praticien et/spécialité</h5>
       </div>
       <!--   Praticien-->
       <div *ngIf="!specialiteChoisie" class="row ml-5 mb-3">
@@ -22,13 +22,11 @@
         </select>
       </div>
 
-<!--      [value]="praticien.id"-->
-
       <div *ngIf="specialiteChoisie" class="row ml-5 mb-3">
         <label for="praticienForm2" style="font-size:15px">Je choisis par praticien:</label>
-        <select class="form-control" id="praticienForm2" style="width: 250px;">
+        <select class="form-control" id="praticienForm2" style="width: 250px;" [(ngModel)]="praticienSelectionne.id">
           <option >Choisissez un praticien</option>
-          <option *ngFor="let praticien of praticiensParSpecialite" >{{praticien.nom}}</option>
+          <option [value]="praticien.id" *ngFor="let praticien of praticiensParSpecialite" >{{praticien.nom}}</option>
         </select>
       </div>
 
@@ -43,11 +41,15 @@
 
       <div *ngIf="praticienChoisi" class="row ml-5 mb-3">
         <label for="specialiteForm2" style="font-size:15px">Je choisis par spécialité:</label>
-        <select class="form-control" id="specialiteForm2" style="width: 250px;">
+        <select class="form-control" id="specialiteForm2" style="width: 250px;" [(ngModel)]="specialiteSelectionnee">
           <option >Choisissez une spécialité</option>
           <option >{{praticienSelectionne.specialitePrincipale}}</option>
           <option >{{praticienSelectionne.specialiteSecondaire}}</option>
         </select>
+
+      </div>
+      <div class="float-right mr-5 mt-3">
+        <a class="btn" style="background-color :#3F729B; color: white;" title="Retour" (click)="selectPratPlusSpe()"> Valider </a>
       </div>
 
     </div>
@@ -61,17 +63,17 @@
       <!--   Motif de la consultation-->
       <div class="row ml-5 mb-3">
         <label for="motif" style="font-size:15px">Je choisis le motif de la consultation:</label>
-        <select class="form-control" id="motif" style="width: 250px;">
+        <select class="form-control" id="motif" style="width: 250px;" [ngModel]="motifSelectionne.id" (ngModelChange)="onChangeMotif($event)">
           <option >Choisissez un motif de consultation</option>
-          <option *ngFor="let motif of listMotif()">{{motif.nom}}</option>
+          <option [value]="motif.id" *ngFor="let motif of motifsDuPraticien">{{motif.nom}}</option>
         </select>
       </div>
       <!--   Lieu de la consultation-->
       <div class="row ml-5 mb-3">
         <label for="lieu" style="font-size:15px">Je choisis (si besoin) le lieu:</label>
-        <select class="form-control" id="lieu" style="width: 250px;">
+        <select class="form-control" id="lieu" style="width: 250px;" [(ngModel)]="lieuSelectionne">
           <option >Choisissez un lieu de consultation</option>
-          <option *ngFor="let lieu of listLieu()">{{lieu.nom}}</option>
+          <option *ngFor="let lieu of lieuxDuMotif">{{lieu.nom}} - {{lieu.ville}}</option>
         </select>
       </div>
     </div>
@@ -130,10 +132,7 @@
       <div class="row ml-5 mb-3">
         <label for="heure" style="font-size:15px">Je choisis l'heure:</label>
         <select class="form-control" id="heure" style="width: 250px;">
-          <option>8h00</option>
-          <option>9h00</option>
-          <option>15h00</option>
-          <option>15h15</option>
+          <option *ngFor="let creneau of creneauxDispo">{{creneau.date | slice:11}}</option>
         </select>
       </div>
       <!--  Rappels des informations-->

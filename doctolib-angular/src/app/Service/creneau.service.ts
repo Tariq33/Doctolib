@@ -30,6 +30,10 @@ export class CreneauService {
     return this.http.put<Creneau>('http://localhost:8080/creneau/' + creneau.id, creneau);
   }
 
+  findByDateAndPraticien(date:string, id:number) : Observable<Array<Creneau>>{
+    return this.http.get<Array<Creneau>>('http://localhost:8080/creneau/bydateAndPraticien/'+date +'/'+id);
+  }
+
   deleteById(id: number) : Observable<Creneau> {
     return this.http.delete<Creneau>('http://localhost:8080/creneau/' + id);
   }
@@ -39,4 +43,6 @@ export class CreneauService {
       this.creneaux = resp;
     }, error => console.log(error));
   }
+
+
 }

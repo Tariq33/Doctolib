@@ -6,6 +6,9 @@ import * as range from 'lodash.range';
 import {MotifDeConsultation} from '../../Model/motif-de-consultation';
 import {MotifDeConsultationService} from '../../Service/motif-de-consultation.service';
 import {LieuService} from '../../Service/lieu.service';
+import {Lieu} from '../../Model/lieu';
+import {Creneau} from '../../Model/creneau';
+import {CreneauService} from '../../Service/creneau.service';
 
 export interface CalendarDate {
   mDate: moment.Moment;
@@ -29,6 +32,15 @@ export class PriseDeRdvComponent implements OnInit {
   specialiteSelectionnee: string;
   praticiensParSpecialite: Array<Praticien>;
 
+  motifsDuPraticien: Array<MotifDeConsultation>;
+  motifSelectionne:MotifDeConsultation = new MotifDeConsultation();
+  motifChoisi: boolean=false;
+  pratAndSpeChoisis: boolean= false;
+
+  lieuxDuMotif: Array<Lieu>;
+  lieuSelectionne:Lieu = new Lieu();
+  lieuChoisi: boolean=false;
+
   public currentDate: moment.Moment;
   public namesOfDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   public weeks: Array<CalendarDate[]> = [];
@@ -39,7 +51,7 @@ export class PriseDeRdvComponent implements OnInit {
 
   @ViewChild('calendar', {static: true}) calendar;
 
-  constructor(private praticienService: PraticienService, private motifService: MotifDeConsultationService, private lieuService: LieuService) {
+  constructor(private praticienService: PraticienService, private motifService: MotifDeConsultationService, private lieuService: LieuService, private creneauService : CreneauService) {
     this.lieuService = lieuService;
   }
 
@@ -64,17 +76,53 @@ export class PriseDeRdvComponent implements OnInit {
     return listSpecialite2;
   }
 
-  listLieu() {
-    return this.lieuService.findAll();
+
+
+  test(){
+    console.log("1");
+    console.log(this.specialiteSelectionnee);
+    console.log("2");
+    console.log(this.praticienSelectionne);
+    console.log("3");
+    console.log(this.motifSelectionne);
+    console.log("4");
+    console.log(this.lieuSelectionne);
+  }
+
+  selectPratPlusSpe(){
+    this.pratAndSpeChoisis = true;
+    this.listMotif();
   }
 
   listMotif() {
-    this.motifService.findByPraticienId(this.praticienSelectionne.id).subscribe(resp => {
-      resp;
+    if(this.pratAndSpeChoisis) {
+      this.pratAndSpeChoisis=false;
+      this.motifService.findByPraticienId(this.praticienSelectionne.id).subscribe(resp => {
+        this.motifsDuPraticien = resp;
+        console.log(this.motifsDuPraticien);
+      }, error => console.log('erreur'));
+    }
+  }
+
+  onChangeMotif(idMotifChoisi){
+    console.log(idMotifChoisi);
+    this.motifChoisi = true;
+    this.motifService.findById(idMotifChoisi).subscribe(resp => {
+      this.motifSelectionne= resp;
+      this.listLieu();
     }, error => console.log('erreur'));
+  }
 
-
-    return this.motifService.findAll();
+  listLieu() {
+    if(this.motifChoisi) {
+      this.motifChoisi=false;
+      console.log("l id du motif : " + this.motifSelectionne.id);
+      this.lieuService.findByMotif(this.motifSelectionne.id).subscribe(resp => {
+        this.lieuxDuMotif=resp;
+        console.log("les lieux");
+        console.log(this.lieuxDuMotif);
+      }, error => console.log('erreur'));
+    }
   }
 
   onChangePraticien(id) {
@@ -160,6 +208,7 @@ export class PriseDeRdvComponent implements OnInit {
   }
 
   public selectDate(date: CalendarDate) {
+    this.checkSiCreneauxDispo(date);
     this.selectedDate = moment(date.mDate).format('DD/MM/YYYY');
     this.generateCalendar();
 
@@ -175,6 +224,18 @@ export class PriseDeRdvComponent implements OnInit {
   //   const lastSat = moment().weekday(-1);
   //   return moment(date).isSameOrBefore(lastSat);
   // }
+
+  creneauxDispo : Array<Creneau>;
+
+  checkSiCreneauxDispo(date: CalendarDate){
+    // console.log(moment(date.mDate).format('DD-MM-YYYY'));
+    this.creneauService.findByDateAndPraticien(moment(date.mDate).format('DD-MM-YYYY'), this.praticienSelectionne.id).subscribe(resp => {
+      this.creneauxDispo=resp;
+
+    }, error => console.log('erreur'));
+  }
+
+
 
 
 }
