@@ -1,0 +1,7 @@
+
+entity Post {
+	titre String,
+    content String,
+    loveIts Int,
+    createdAt Date
+}
